@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cenit Digital - The Sovereign Creative</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#ccc3d8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#630ed4",
+                        "surface-dim": "#dadada",
+                        "surface-container-high": "#e8e8e8",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#5c5f61",
+                        "on-primary-container": "#ede0ff",
+                        "background": "#ffffff",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#4a4455",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary": "#474e64",
+                        "secondary-container": "#e0e3e5",
+                        "on-secondary-container": "#626567",
+                        "secondary-fixed-dim": "#c4c7c9",
+                        "surface-tint": "#732ee4",
+                        "surface": "#f9f9f9",
+                        "surface-container-low": "#f3f3f4",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-container": "#5e667d",
+                        "inverse-surface": "#2f3131",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "inverse-primary": "#d2bbff",
+                        "outline": "#7b7487",
+                        "secondary-fixed": "#e0e3e5",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#25005a",
+                        "on-tertiary-container": "#dee5ff",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#dae2fd",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed": "#eaddff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "section-gap": "160px",
+                        "margin-desktop": "64px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["EB Garamond"],
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["EB Garamond"],
+                        "display-md": ["EB Garamond"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-md": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Liquid Glass Utilities - Light Mode */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Custom Inputs */
+        .luxury-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1a1c1c;
+            padding-bottom: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .luxury-input:focus {
+            outline: none;
+            border-bottom-color: rgba(99, 14, 212, 1);
+            box-shadow: 0 4px 15px -10px rgba(99, 14, 212, 0.2); 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-white">
+<!-- TopNavBar Shared Component -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="font-display-md text-headline-md tracking-tight text-primary">
+                Cenit Digital
+            </div>
+<!-- Desktop Nav -->
+<ul class="hidden md:flex items-center gap-8">
+<!-- Using semantic logic, none are strictly 'active' on landing, but we'll leave them inactive -->
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 ease-in-out scale-95 active:scale-90 transition-transform" href="#services">Services</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 ease-in-out scale-95 active:scale-90 transition-transform" href="#portfolio">Portfolio</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 ease-in-out scale-95 active:scale-90 transition-transform" href="#pricing">Pricing</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 ease-in-out scale-95 active:scale-90 transition-transform" href="#contact">Contact</a></li>
+</ul>
+<div class="hidden md:block">
+<a class="inline-block bg-primary-container text-white font-label-md text-label-md px-6 py-3 hover:brightness-110 transition-all duration-300 scale-95 active:scale-90 transition-transform shadow-sm" href="#contact">
+                    Inquire Now
+                </a>
+</div>
+<!-- Mobile Menu Icon (Visual Only) -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- 1. Cinematic Hero -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden bg-surface-bright">
+<!-- Background Image (Simplified for Light Mode) -->
+<div class="absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
+<div class="absolute w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] bg-primary/5 rounded-full blur-3xl opacity-50 mix-blend-multiply"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto text-center flex flex-col items-center">
+<span class="inline-block px-4 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md mb-8 border border-outline-variant/30">
+                    The Sovereign Creative
+                </span>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background mb-6 max-w-4xl mx-auto">
+                    Architects of <br/><span class="text-primary italic font-light">Digital Prestige</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
+                    We craft exclusive digital experiences for brands that demand authority, merging technical mastery with cinematic elegance in a light, minimalist aesthetic.
+                </p>
+<a class="inline-flex items-center gap-2 border-b border-primary text-primary font-headline-md text-headline-md pb-1 hover:border-b-2 transition-all" href="#portfolio">
+                    Explore the Archive
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_right_alt</span>
+</a>
+</div>
+</section>
+<!-- 2. Services: Liquid Glass Cards -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop relative bg-background" id="services">
+<div class="max-w-container-max mx-auto">
+<div class="mb-20">
+<h2 class="font-display-md text-headline-lg md:text-display-md text-on-background mb-4">Mastery &amp;<br/><span class="text-primary">Execution</span></h2>
+<div class="w-24 h-px bg-primary/30"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Service 1 -->
+<div class="glass-panel p-10 flex flex-col items-start group hover:border-primary/30 transition-colors duration-500">
+<span class="material-symbols-outlined text-primary text-4xl mb-8" style="font-variation-settings: 'FILL' 0;">code_blocks</span>
+<h3 class="font-headline-lg text-headline-md text-on-background mb-4">Web Development</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">
+                            Bespoke digital environments engineered for performance and visual supremacy. We build platforms that command attention.
+                        </p>
+<a class="font-label-md text-label-md text-primary uppercase tracking-widest group-hover:text-primary-container transition-colors" href="#">Discover <span class="material-symbols-outlined align-middle text-sm">chevron_right</span></a>
+</div>
+<!-- Service 2 -->
+<div class="glass-panel p-10 flex flex-col items-start group hover:border-primary/30 transition-colors duration-500 mt-0 md:mt-12">
+<span class="material-symbols-outlined text-primary text-4xl mb-8" style="font-variation-settings: 'FILL' 0;">campaign</span>
+<h3 class="font-headline-lg text-headline-md text-on-background mb-4">Digital Marketing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">
+                            Strategic campaigns designed to dominate narratives. High-conversion systems wrapped in editorial luxury.
+                        </p>
+<a class="font-label-md text-label-md text-primary uppercase tracking-widest group-hover:text-primary-container transition-colors" href="#">Discover <span class="material-symbols-outlined align-middle text-sm">chevron_right</span></a>
+</div>
+<!-- Service 3 -->
+<div class="glass-panel p-10 flex flex-col items-start group hover:border-primary/30 transition-colors duration-500 mt-0 md:mt-24">
+<span class="material-symbols-outlined text-primary text-4xl mb-8" style="font-variation-settings: 'FILL' 0;">all_inclusive</span>
+<h3 class="font-headline-lg text-headline-md text-on-background mb-4">Automations</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">
+                            Frictionless operational flows. We architect invisible systems that scale your authority without scaling your effort.
+                        </p>
+<a class="font-label-md text-label-md text-primary uppercase tracking-widest group-hover:text-primary-container transition-colors" href="#">Discover <span class="material-symbols-outlined align-middle text-sm">chevron_right</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Portfolio: Asymmetric Grid -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="portfolio">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div>
+<h2 class="font-display-md text-headline-lg md:text-display-md text-on-background mb-4">The <span class="text-primary">Archive</span></h2>
+<div class="w-24 h-px bg-primary/30"></div>
+</div>
+<a class="font-label-md text-label-md border border-outline-variant text-on-background px-6 py-3 hover:bg-surface-container transition-colors" href="#">
+                        View Full Roster
+                    </a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[400px]">
+<!-- Project 1 (Large) -->
+<div class="md:col-span-8 glass-panel relative group overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-multiply" data-alt="A sleek, modern editorial website mockup displayed on a minimalist light glass screen. The scene is illuminated by soft, moody studio lighting that creates a high-end luxury aesthetic. The artwork relies on a sophisticated palette of soft whites, greys, punctuated by intense accents of warm gold. The mood is authoritative and cinematic, resembling a high-fashion digital spread." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANGhmcd9WXLeMQMOPH6raERE7_ZKQH55WCCgYInfaaiV3j8G-mphTZhgz_3wDoicq4sy7GWl7kJBJIYF8cgzAxavSb6O36i5R3VI-T6KqQ9nYkGT9GnLfB3kRXvxhsp8sD97vFLDplAMecHJb-vRhzg11v4J5jSplf_ZRM7DkSO_ULMIeueJbNTxKl6yIOn4gzgStcGclm6gF1hI8QjWmPUjsdOEcqspp0pP9XrVdTGE1UJqgGk6a2bQACmaUlh784J1g0dIwof_g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 z-10">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-container/80 text-on-surface-variant font-label-md text-label-md mb-3 backdrop-blur-md border border-outline-variant/50">E-Commerce</span>
+<h3 class="font-headline-lg text-headline-md text-on-background">Maison Noir</h3>
+</div>
+</div>
+<!-- Project 2 (Small) -->
+<div class="md:col-span-4 glass-panel relative group overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-multiply" data-alt="A sophisticated branding presentation featuring elegant typography and liquid glass UI elements overlaid on a light, textured background. The scene is illuminated by focused, soft lighting that creates a premium, exclusive aesthetic. The artwork relies on a sophisticated palette of pristine whites and rich purples, punctuated by subtle accents of gold foil. The mood is minimalist yet technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFr9S1u7OSy5qmMuOdnrHi5gVpjV4RSKMi89pC5yxRvnK-QerbEH3AIzURsBmBOQ1ZZq4Uc0TPxY0rn6IvVfIkKPIAhESVFMCsRlxQvpWgNu_Zt2uoINi51_r_Q8rvZzlvPd7ifn-VFmP2icdHe8QaA7qN4x8stl6XgIkakhXFd9U6S6mOVrcC4-qxHYJ5_CwJ200cRukxnqC2I3BFEhaLeLkBksytJc-An9Qu9yrmrBqvr-VEfdt83MxDzpL-ltr41__9ef2reN4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 z-10">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-container/80 text-on-surface-variant font-label-md text-label-md mb-3 backdrop-blur-md border border-outline-variant/50">Identity</span>
+<h3 class="font-headline-lg text-headline-md text-on-background">Aura Group</h3>
+</div>
+</div>
+<!-- Project 3 (Small) -->
+<div class="md:col-span-4 glass-panel relative group overflow-hidden border border-outline-variant/30">
+<div class="w-full h-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-6xl" style="font-variation-settings: 'FILL' 0;">image</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 z-10">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-container/80 text-on-surface-variant font-label-md text-label-md mb-3 backdrop-blur-md border border-outline-variant/50">Web3</span>
+<h3 class="font-headline-lg text-headline-md text-on-background">Nexus Protocol</h3>
+</div>
+</div>
+<!-- Project 4 (Large) -->
+<div class="md:col-span-8 glass-panel relative group overflow-hidden border border-outline-variant/30">
+<div class="w-full h-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-6xl" style="font-variation-settings: 'FILL' 0;">image</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 z-10">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-container/80 text-on-surface-variant font-label-md text-label-md mb-3 backdrop-blur-md border border-outline-variant/50">Platform Design</span>
+<h3 class="font-headline-lg text-headline-md text-on-background">Lumina Analytics</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="bg-surface-bright w-full py-12 border-t border-outline-variant/30 shadow-none">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<div class="font-display-md text-headline-md text-primary">
+                Cenit Digital
+            </div>
+<ul class="flex flex-wrap justify-center gap-6">
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Terms of Service</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">LinkedIn</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Instagram</a></li>
+</ul>
+<div class="font-body-md text-body-md text-on-surface-variant text-center md:text-right">
+                © 2024 Cenit Digital. The Sovereign Creative.
+            </div>
+</div>
+</footer>
+</body></html>

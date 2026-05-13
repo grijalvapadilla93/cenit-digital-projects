@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-playfair: 'Playfair Display', 'Georgia', serif;
+}
+
+html {
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: #555555; border-radius: 0; }
+
+/* Obsidian-style hero that pins and shrinks */
+.hero-pin {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+/* Scroll reveal utility - slow fade */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Line divider */
+.line-divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Link style */
+.obsidian-link {
+  font-size: 14px;
+  color: #888888;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.obsidian-link:hover {
+  color: #ffffff;
+}
+
+/* Close button */
+.close-btn {
+  font-size: 14px;
+  color: #888888;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+}
+.close-btn:hover {
+  color: #ffffff;
+}
+
+/* Bridge reveal utility */
+.bridge-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bridge-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Portfolio expand container */
+.portfolio-expanded {
+  overflow: hidden;
+}
