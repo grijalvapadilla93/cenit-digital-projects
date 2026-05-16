@@ -121,6 +121,15 @@ body::before {
     opacity: 1 !important;
     width: 60px !important;
   }
+  /* DEBUG: make WhatWeDo section clearly visible */
+  [id="services"] {
+    border-left: 2px solid rgba(198,167,106,0.3);
+    padding-left: 24px;
+  }
+  [id="services"] .section-header p {
+    color: #C6A76A !important;
+    font-size: 14px !important;
+  }
 }
 
 /* Line divider */
