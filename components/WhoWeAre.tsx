@@ -22,72 +22,74 @@ export function WhoWeAre() {
     let split: SplitType | null = null;
 
     const ctx = gsap.context(() => {
-      // Detect mobile
-      const isMobile = window.innerWidth < 768;
+      // Detect mobile — skip all animations on mobile, content visible by default
+      const mm = gsap.matchMedia();
       
-      // Split the headline — chars on desktop, words on mobile (lighter)
-      const split = new SplitType(headline, { types: isMobile ? "words" : "chars" });
-      const elements = split[isMobile ? "words" : "chars"];
+      mm.add("(min-width: 768px)", () => {
+        // Split the headline — chars on desktop
+        split = new SplitType(headline, { types: "chars" });
+        const elements = split.chars;
 
-      if (!elements || elements.length === 0) return;
+        if (!elements || elements.length === 0) return;
 
-      // Set initial state
-      gsap.set(elements, { opacity: 0, y: isMobile ? 20 : 40, rotateX: isMobile ? 0 : -40 });
+        // Set initial state
+        gsap.set(elements, { opacity: 0, y: 40, rotateX: -40 });
 
-      // Animate — lighter stagger on mobile
-      gsap.to(elements, {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        duration: isMobile ? 0.4 : 0.5,
-        ease: "power3.out",
-        stagger: isMobile ? 0.04 : 0.025,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          end: "top 35%",
-          scrub: false,
-          toggleActions: "play none none none",
-        },
-      });
-
-      // Body text fades in after
-      gsap.fromTo(
-        body,
-        { opacity: 0, y: 20 },
-        {
+        // Animate — cinematic, slow, one by one
+        gsap.to(elements, {
           opacity: 1,
           y: 0,
-          duration: 1,
+          rotateX: 0,
+          duration: 0.5,
           ease: "power3.out",
-          delay: 1,
+          stagger: 0.025,
           scrollTrigger: {
             trigger: section,
-            start: "top 60%",
+            start: "top 75%",
+            end: "top 35%",
             scrub: false,
             toggleActions: "play none none none",
           },
-        }
-      );
+        });
 
-      // Thin animated line divider
-      gsap.fromTo(
-        ".wwa-divider",
-        { width: 0, opacity: 0 },
-        {
-          width: 60,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.inOut",
-          delay: 0.8,
-          scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            scrub: false,
-            toggleActions: "play none none none",
-          },
-        }
-      );
+        // Body text fades in after
+        gsap.fromTo(
+          body,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 1,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 60%",
+              scrub: false,
+              toggleActions: "play none none none",
+            },
+          }
+        );
+
+        // Thin animated line divider
+        gsap.fromTo(
+          ".wwa-divider",
+          { width: 0, opacity: 0 },
+          {
+            width: 60,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.inOut",
+            delay: 0.8,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 60%",
+              scrub: false,
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }); // end desktop matchMedia
     }, section);
 
     return () => {
