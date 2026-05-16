@@ -105,16 +105,20 @@ export function Hero() {
       // Mobile: simpler
       mm.add("(max-width: 767px)", () => {
         gsap.to(videoRef.current, {
-          opacity: 0, scale: 1.1, duration: 0.8,
-          scrollTrigger: { trigger: hero, start: "top top", end: "+=80%", scrub: false },
+          opacity: 0, scale: 1.1, ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=80%", scrub: 0.5 },
         });
         gsap.to(textRef.current, {
-          opacity: 0, y: -30, duration: 0.8,
-          scrollTrigger: { trigger: hero, start: "top top", end: "+=30%", scrub: false },
+          opacity: 0, y: -30, ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=30%", scrub: 0.5 },
         });
         gsap.to(ctaRef.current, {
-          opacity: 0, duration: 0.4,
-          scrollTrigger: { trigger: hero, start: "top top", end: "+=15%", scrub: false },
+          opacity: 0, ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=15%", scrub: 0.5 },
+        });
+        gsap.to(scrollIndicatorRef.current, {
+          opacity: 0, ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=10%", scrub: 0.5 },
         });
       });
     }, hero);
