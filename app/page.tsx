@@ -21,7 +21,7 @@ export default function Home() {
             style={{
               width: "80vw", height: "80vw", maxWidth: "800px", maxHeight: "800px",
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(140,180,255,0.4) 0%, transparent 60%)",
+              background: "radial-gradient(circle, rgba(140,180,255,0.5) 0%, transparent 60%)",
               filter: "blur(100px)", top: 0, left: "-20%",
               animation: "driftOrb1 12s ease-in-out infinite alternate",
             }}
@@ -31,7 +31,7 @@ export default function Home() {
             style={{
               width: "60vw", height: "60vw", maxWidth: "600px", maxHeight: "600px",
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(200,220,255,0.35) 0%, transparent 60%)",
+              background: "radial-gradient(circle, rgba(200,220,255,0.45) 0%, transparent 60%)",
               filter: "blur(80px)", bottom: "-10%", right: "-10%",
               animation: "driftOrb2 15s ease-in-out infinite alternate",
             }}

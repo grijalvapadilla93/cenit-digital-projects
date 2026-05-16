@@ -30,16 +30,29 @@ export function WhatWeDo() {
     if (!el) return;
 
     const ctx = gsap.context(() => {
-      // Section header
-      const header = el.querySelector<HTMLElement>(".section-header");
-      if (header) {
-        gsap.fromTo(header, { y: 40, opacity: 0 }, {
-          y: 0, opacity: 1, ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 75%", end: "top 55%", scrub: true },
-        });
-      }
+      const mm = gsap.matchMedia();
 
-      // Each service-item animates in with timeline
+      // Section header — scrub on desktop, one-shot on mobile
+      mm.add("(min-width: 768px)", () => {
+        const header = el.querySelector<HTMLElement>(".section-header");
+        if (header) {
+          gsap.fromTo(header, { y: 40, opacity: 0 }, {
+            y: 0, opacity: 1, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 75%", end: "top 55%", scrub: true },
+          });
+        }
+      });
+      mm.add("(max-width: 767px)", () => {
+        const header = el.querySelector<HTMLElement>(".section-header");
+        if (header) {
+          gsap.fromTo(header, { y: 40, opacity: 0 }, {
+            y: 0, opacity: 1, ease: "power3.out", duration: 0.8,
+            scrollTrigger: { trigger: el, start: "top 80%", scrub: false, toggleActions: "play none none none" },
+          });
+        }
+      });
+
+      // Each service-item animates in with timeline (works on both)
       const items = gsap.utils.toArray<HTMLElement>(".service-item");
       const tl = gsap.timeline({
         scrollTrigger: {

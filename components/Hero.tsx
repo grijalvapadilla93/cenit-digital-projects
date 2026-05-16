@@ -24,34 +24,48 @@ export function Hero() {
 
     const ctx = gsap.context(() => {
       // ─── ENTRANCE ANIMATION (on mount) ───
+      const mm = gsap.matchMedia();
 
-      // Set initial states
-      gsap.set(videoRef.current, { opacity: 0 });
-      gsap.set([img1Ref.current, img2Ref.current, img3Ref.current], { opacity: 0, y: 80, rotate: -8, scale: 0.9 });
-      gsap.set(labelRef.current, { opacity: 0, y: 15 });
-      const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
-      if (titleLines) gsap.set(titleLines, { y: 30 }); // don't hide with opacity — let them be visible
-      gsap.set(ctaRef.current, { opacity: 0, y: 20 });
-      gsap.set(scrollIndicatorRef.current, { opacity: 0 });
+      // Desktop entrance — with images
+      mm.add("(min-width: 768px)", () => {
+        gsap.set(videoRef.current, { opacity: 0 });
+        gsap.set([img1Ref.current, img2Ref.current, img3Ref.current], { opacity: 0, y: 80, rotate: -8, scale: 0.9 });
+        gsap.set(labelRef.current, { opacity: 0, y: 15 });
+        const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
+        if (titleLines) gsap.set(titleLines, { y: 30 });
+        gsap.set(ctaRef.current, { opacity: 0, y: 20 });
+        gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
-      // Entrance timeline — runs once on load
-      const tl = gsap.timeline();
-      tl.to(videoRef.current, { opacity: 0.15, duration: 2, ease: "power2.out" })
-        .to([img1Ref.current, img2Ref.current, img3Ref.current], {
-          opacity: 1, y: 0, rotate: 0, scale: 1,
-          duration: 1.6, ease: "power4.out", stagger: 0.15,
-        }, "-=0.5")
-        .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.8")
-        .to(titleLines, {
-          y: 0,
-          duration: 0.9, ease: "power3.out", stagger: 0.2,
-        }, "-=0.3")
-        .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
-        .to(scrollIndicatorRef.current, { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.2");
+        const tl = gsap.timeline();
+        tl.to(videoRef.current, { opacity: 0.15, duration: 2, ease: "power2.out" })
+          .to([img1Ref.current, img2Ref.current, img3Ref.current], {
+            opacity: 1, y: 0, rotate: 0, scale: 1,
+            duration: 1.6, ease: "power4.out", stagger: 0.15,
+          }, "-=0.5")
+          .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.8")
+          .to(titleLines, { y: 0, duration: 0.9, ease: "power3.out", stagger: 0.2 }, "-=0.3")
+          .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
+          .to(scrollIndicatorRef.current, { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.2");
+      });
+
+      // Mobile entrance — simpler, no images (they're hidden)
+      mm.add("(max-width: 767px)", () => {
+        gsap.set(videoRef.current, { opacity: 0 });
+        gsap.set(labelRef.current, { opacity: 0, y: 15 });
+        const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
+        if (titleLines) gsap.set(titleLines, { y: 15 });
+        gsap.set(ctaRef.current, { opacity: 0, y: 20 });
+        gsap.set(scrollIndicatorRef.current, { opacity: 0 });
+
+        const tl = gsap.timeline();
+        tl.to(videoRef.current, { opacity: 0.15, duration: 1.5, ease: "power2.out" })
+          .to(labelRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3")
+          .to(titleLines, { y: 0, duration: 0.6, ease: "power3.out", stagger: 0.15 }, "-=0.2")
+          .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.2")
+          .to(scrollIndicatorRef.current, { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.2");
+      });
 
       // ─── SCROLL ANIMATIONS ───
-
-      const mm = gsap.matchMedia();
 
       // Desktop: full scrub
       mm.add("(min-width: 768px)", () => {
