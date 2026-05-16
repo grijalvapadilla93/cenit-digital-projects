@@ -151,6 +151,13 @@ body::before {
   100% { transform: translate(15px, 15px) scale(0.9); }
 }
 
+/* Scroll indicator pulse */
+@keyframes scrollPulse {
+  0% { opacity: 0.3; transform: scaleY(0.5); }
+  50% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0.3; transform: scaleY(0.5); }
+}
+
 /* Decorative SVG divider between sections */
 .section-divider {
   width: 100%;
