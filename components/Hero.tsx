@@ -30,7 +30,7 @@ export function Hero() {
       gsap.set([img1Ref.current, img2Ref.current, img3Ref.current], { opacity: 0, y: 80, rotate: -8, scale: 0.9 });
       gsap.set(labelRef.current, { opacity: 0, y: 15 });
       const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
-      if (titleLines) gsap.set(titleLines, { opacity: 0, y: 30 });
+      if (titleLines) gsap.set(titleLines, { y: 30 }); // don't hide with opacity — let them be visible
       gsap.set(ctaRef.current, { opacity: 0, y: 20 });
       gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
@@ -43,7 +43,7 @@ export function Hero() {
         }, "-=0.5")
         .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.8")
         .to(titleLines, {
-          opacity: 1, y: 0,
+          y: 0,
           duration: 0.9, ease: "power3.out", stagger: 0.2,
         }, "-=0.3")
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
