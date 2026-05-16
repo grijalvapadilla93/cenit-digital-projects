@@ -107,6 +107,20 @@ body::before {
     opacity: 1 !important;
     transform: none !important;
   }
+  /* Brighter orbs on mobile */
+  .gradient-orb {
+    filter: blur(40px) !important;
+    opacity: 0.9 !important;
+  }
+  /* Force visibility on all major section elements */
+  .service-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .wwa-divider {
+    opacity: 1 !important;
+    width: 60px !important;
+  }
 }
 
 /* Line divider */
