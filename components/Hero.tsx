@@ -115,7 +115,7 @@ export function Hero() {
   };
 
   return (
-    <div ref={containerRef} data-hero className="relative w-full h-screen overflow-hidden bg-black">
+    <div ref={containerRef} data-hero className="relative w-full h-dvh overflow-hidden bg-black">
       {/* LAYER 0: video */}
       <div className="absolute inset-0 z-[0] scale-110">
         <video
@@ -153,7 +153,7 @@ export function Hero() {
       {/* LAYER 3: title text */}
       <div
         ref={textRef}
-        className="relative z-[3] min-h-screen flex flex-col items-center justify-center text-center px-6 pointer-events-none"
+        className="relative z-[3] min-h-dvh flex flex-col items-center justify-center text-center px-6 pointer-events-none"
       >
         <p
           ref={labelRef}

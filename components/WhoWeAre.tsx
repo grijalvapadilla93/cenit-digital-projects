@@ -105,7 +105,7 @@ export function WhoWeAre() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-dvh flex items-center overflow-hidden"
     >
       <div className="max-w-5xl mx-auto w-full relative z-[1] px-6 md:px-16">
         {/* Label */}

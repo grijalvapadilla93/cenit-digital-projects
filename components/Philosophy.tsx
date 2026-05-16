@@ -28,7 +28,7 @@ export function Philosophy() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center bg-black px-6 md:px-16"
+      className="relative min-h-dvh flex items-center justify-center bg-black px-6 md:px-16"
     >
       <div className="max-w-2xl text-center">
         <p
@@ -45,7 +45,7 @@ export function Philosophy() {
           style={{
             fontSize: "clamp(16px, 2vw, 24px)",
             lineHeight: 1.6,
-            color: "#888888",
+            color: "#ffffff",
           }}
         >
           Then we put your business where it belongs — in front of the right people,
