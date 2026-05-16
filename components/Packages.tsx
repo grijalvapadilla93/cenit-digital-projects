@@ -98,13 +98,17 @@ export function Packages() {
   const startForm = () => {
     setShowForm(true);
     setStep(0);
+    // Smooth scroll to form after state update
+    setTimeout(() => {
+      document.getElementById("packages")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   return (
     <section id="packages" ref={containerRef} className="relative px-6 md:px-16 py-24 md:py-32" style={{ position: "relative" }}>
       <div className="max-w-6xl mx-auto">
         <div className="mb-20 scroll-reveal">
-          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#888888", marginBottom: 16 }}>
+          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 16 }}>
             Packages
           </p>
         </div>
@@ -114,9 +118,9 @@ export function Packages() {
             // === PACKAGES VIEW ===
             <motion.div
               key="packages"
-              initial={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30, height: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -135,7 +139,7 @@ export function Packages() {
                       onClick={() => selectTier(tier.name)}
                     >
                       {tier.popular && (
-                        <p className="font-light uppercase tracking-[0.15em] mb-4" style={{ fontSize: 10, color: "#888888" }}>
+                        <p className="font-light uppercase tracking-[0.15em] mb-4" style={{ fontSize: 10, color: "#ffffff" }}>
                           Most popular
                         </p>
                       )}
@@ -147,16 +151,16 @@ export function Packages() {
                       <h3 className="font-light text-white tracking-[0.03em] mb-2" style={{ fontSize: 24 }}>
                         {tier.name}
                       </h3>
-                      <p className="font-light text-gray-400 mb-6" style={{ fontSize: 14 }}>
+                      <p className="font-light text-white mb-6" style={{ fontSize: 14 }}>
                         {tier.price}
                       </p>
-                      <p className="font-light text-gray-500 leading-relaxed mb-6" style={{ fontSize: 14, lineHeight: 1.6 }}>
+                      <p className="font-light text-white leading-relaxed mb-6" style={{ fontSize: 14, lineHeight: 1.6 }}>
                         {tier.description}
                       </p>
                       <div className="line-divider mb-6" />
                       <ul className="space-y-2">
                         {tier.features.map((f) => (
-                          <li key={f} className="font-light text-gray-300" style={{ fontSize: 14 }}>
+                          <li key={f} className="font-light text-white" style={{ fontSize: 14 }}>
                             — {f}
                           </li>
                         ))}
@@ -191,7 +195,7 @@ export function Packages() {
               <p className="font-light text-white tracking-[0.02em] mb-2" style={{ fontSize: 28 }}>
                 We&apos;ve got it.
               </p>
-              <p className="font-light text-gray-500" style={{ fontSize: 14 }}>
+              <p className="font-light text-white" style={{ fontSize: 14 }}>
                 We&apos;ll reach out within 24 hours.
               </p>
             </motion.div>
@@ -205,7 +209,7 @@ export function Packages() {
             >
               {/* Package reminder */}
               <div className="mb-12">
-                <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#666", marginBottom: 4 }}>
+                <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 4 }}>
                   Selected package
                 </p>
                 <p className="font-playfair text-white" style={{ fontSize: 24 }}>
@@ -221,7 +225,7 @@ export function Packages() {
               </div>
 
               {/* Step title */}
-              <p className="font-light text-gray-500 uppercase tracking-[0.1em] mb-8" style={{ fontSize: 11 }}>
+              <p className="font-light text-white uppercase tracking-[0.1em] mb-8" style={{ fontSize: 11 }}>
                 {formSteps[step]}
               </p>
 
@@ -234,7 +238,7 @@ export function Packages() {
                         <button
                           key={need}
                           onClick={() => setFormData((prev) => ({ ...prev, needs: prev.needs.includes(need) ? prev.needs.filter((n) => n !== need) : [...prev.needs, need] }))}
-                          className={`font-light text-left px-4 py-3 transition-colors duration-200 ${formData.needs.includes(need) ? "border-white/30 text-white" : "border-white/10 text-gray-500 hover:text-white/70"}`}
+                          className={`font-light text-left px-4 py-3 transition-colors duration-200 ${formData.needs.includes(need) ? "border-white/30 text-white" : "border-white/10 text-white hover:text-white/80"}`}
                           style={{ fontSize: 14, border: "1px solid" }}
                         >
                           {formData.needs.includes(need) ? "·" : "·"} {need}
@@ -249,7 +253,7 @@ export function Packages() {
                         <button
                           key={b}
                           onClick={() => setFormData((prev) => ({ ...prev, budget: b }))}
-                          className={`font-light w-full text-left px-4 py-3 transition-colors duration-200 ${formData.budget === b ? "border-white/30 text-white" : "border-white/10 text-gray-500 hover:text-white/70"}`}
+                          className={`font-light w-full text-left px-4 py-3 transition-colors duration-200 ${formData.budget === b ? "border-white/30 text-white" : "border-white/10 text-white hover:text-white/80"}`}
                           style={{ fontSize: 14, border: "1px solid" }}
                         >
                           {b}
@@ -264,29 +268,29 @@ export function Packages() {
                       onChange={(e) => setFormData((prev) => ({ ...prev, project: e.target.value }))}
                       placeholder="Tell us about your business, your goals, your timeline..."
                       className="font-light w-full bg-transparent text-white resize-none focus:outline-none"
-                      style={{ fontSize: 16, lineHeight: 1.7, minHeight: 160, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 12 }}
+                      style={{ fontSize: 16, lineHeight: 1.7, minHeight: 160, borderBottom: "1px solid rgba(255,255,255,0.4)", paddingBottom: 12 }}
                     />
                   )}
 
                   {step === 3 && (
                     <div className="space-y-6">
                       <div>
-                        <label className="font-light text-gray-500 block mb-2" style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                        <label className="font-light text-white block mb-2" style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
                           Name
                         </label>
-                        <input type="text" value={formData.name} onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))} className="font-light w-full bg-transparent text-white focus:outline-none" style={{ fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 8 }} placeholder="John Smith" />
+                        <input type="text" value={formData.name} onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))} className="font-light w-full bg-transparent text-white focus:outline-none" style={{ fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.4)", paddingBottom: 8 }} placeholder="John Smith" />
                       </div>
                       <div>
-                        <label className="font-light text-gray-500 block mb-2" style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                        <label className="font-light text-white block mb-2" style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
                           Email
                         </label>
-                        <input type="email" value={formData.email} onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))} className="font-light w-full bg-transparent text-white focus:outline-none" style={{ fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 8 }} placeholder="john@company.com" />
+                        <input type="email" value={formData.email} onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))} className="font-light w-full bg-transparent text-white focus:outline-none" style={{ fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.4)", paddingBottom: 8 }} placeholder="john@company.com" />
                       </div>
                       <div>
-                        <label className="font-light text-gray-500 block mb-2" style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                          Company <span className="text-gray-600">(optional)</span>
+                        <label className="font-light text-white block mb-2" style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                          Company <span className="text-white">(optional)</span>
                         </label>
-                        <input type="text" value={formData.company} onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))} className="font-light w-full bg-transparent text-white focus:outline-none" style={{ fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 8 }} placeholder="Your company" />
+                        <input type="text" value={formData.company} onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))} className="font-light w-full bg-transparent text-white focus:outline-none" style={{ fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.4)", paddingBottom: 8 }} placeholder="Your company" />
                       </div>
                     </div>
                   )}

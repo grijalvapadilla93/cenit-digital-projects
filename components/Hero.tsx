@@ -30,7 +30,7 @@ export function Hero() {
       gsap.set([img1Ref.current, img2Ref.current, img3Ref.current], { opacity: 0, y: 80, rotate: -8, scale: 0.9 });
       gsap.set(labelRef.current, { opacity: 0, y: 15 });
       const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
-      if (titleLines) gsap.set(titleLines, { opacity: 0, y: 40, rotateX: -15 });
+      if (titleLines) gsap.set(titleLines, { opacity: 0, y: 30 });
       gsap.set(ctaRef.current, { opacity: 0, y: 20 });
       gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
@@ -43,7 +43,7 @@ export function Hero() {
         }, "-=0.5")
         .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.8")
         .to(titleLines, {
-          opacity: 1, y: 0, rotateX: 0,
+          opacity: 1, y: 0,
           duration: 0.9, ease: "power3.out", stagger: 0.2,
         }, "-=0.3")
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
@@ -121,7 +121,7 @@ export function Hero() {
         <video
           ref={videoRef}
           src="/hero-video-pingpong.mp4"
-          autoPlay muted loop playsInline preload="metadata"
+          autoPlay muted loop playsInline preload="metadata" poster="/hero-fallback.jpeg"
           className="w-full h-full object-cover pointer-events-none select-none"
         />
       </div>
@@ -137,8 +137,8 @@ export function Hero() {
         </svg>
       </div>
 
-      {/* LAYER 2: images */}
-      <div className="absolute inset-0 z-[2]">
+      {/* LAYER 2: images — hidden on mobile (bad positioning) */}
+      <div className="absolute inset-0 z-[2] hidden md:block">
         <div ref={img1Ref} className="absolute" style={{ top: "-5%", left: "-10%", width: "38vw", height: "38vw", maxWidth: "520px" }}>
           <img src="/Imagenpng1.png" alt="" className="w-full h-full object-contain pointer-events-none select-none" />
         </div>

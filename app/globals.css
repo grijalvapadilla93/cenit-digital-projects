@@ -188,3 +188,8 @@ body::before {
 .hover-char:hover {
   transform: translateY(-2px);
 }
+
+@media (max-width: 767px) {
+  body::before { opacity: 0.015; background-size: 512px 512px; }
+  .gradient-orb { filter: blur(30px) !important; }
+}
