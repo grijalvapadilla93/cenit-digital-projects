@@ -20,29 +20,49 @@ export function Hero() {
     if (!hero) return;
 
     const ctx = gsap.context(() => {
-      // Video fades out
-      gsap.to(videoRef.current, {
-        opacity: 0, scale: 1.15, ease: "none",
-        scrollTrigger: { trigger: hero, start: "top top", end: "+=150%", scrub: true },
-      });
-
-      // Title text fades & moves up
-      gsap.to(textRef.current, {
-        opacity: 0, y: -60, ease: "none",
-        scrollTrigger: { trigger: hero, start: "top top", end: "+=40%", scrub: true },
-      });
-
-      // Mask grows
-      gsap.fromTo(maskRef.current, { scale: 0, opacity: 0 }, {
-        scale: 4, opacity: 1, ease: "none",
-        scrollTrigger: { trigger: hero, start: "top top", end: "+=120%", scrub: true },
-      });
-
-      // Images drift down and shrink
-      [img1Ref, img2Ref, img3Ref].forEach((ref, i) => {
-        gsap.fromTo(ref.current, { scale: 1.2, opacity: 1 }, {
-          scale: 0.15, opacity: 0, y: 400 + i * 50, x: 0, ease: "none",
+      // MatchMedia: simpler animations on mobile
+      const mm = gsap.matchMedia();
+      
+      // Desktop: full scrub animations
+      mm.add("(min-width: 768px)", () => {
+        // Video fades out
+        gsap.to(videoRef.current, {
+          opacity: 0, scale: 1.15, ease: "none",
           scrollTrigger: { trigger: hero, start: "top top", end: "+=150%", scrub: true },
+        });
+
+        // Title text fades & moves up
+        gsap.to(textRef.current, {
+          opacity: 0, y: -60, ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=40%", scrub: true },
+        });
+
+        // Mask grows
+        gsap.fromTo(maskRef.current, { scale: 0, opacity: 0 }, {
+          scale: 4, opacity: 1, ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=120%", scrub: true },
+        });
+
+        // Images drift down and shrink
+        [img1Ref, img2Ref, img3Ref].forEach((ref, i) => {
+          gsap.fromTo(ref.current, { scale: 1.2, opacity: 1 }, {
+            scale: 0.15, opacity: 0, y: 400 + i * 50, x: 0, ease: "none",
+            scrollTrigger: { trigger: hero, start: "top top", end: "+=150%", scrub: true },
+          });
+        });
+      });
+
+      // Mobile: simpler one-shot animations (no scrub)
+      mm.add("(max-width: 767px)", () => {
+        // Just fade out on scroll — no scrub
+        gsap.to(videoRef.current, {
+          opacity: 0, scale: 1.1, duration: 0.8,
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=80%", scrub: false },
+        });
+        
+        gsap.to(textRef.current, {
+          opacity: 0, y: -30, duration: 0.8,
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=30%", scrub: false },
         });
       });
     }, hero);
@@ -57,7 +77,7 @@ export function Hero() {
         <video
           ref={videoRef}
           src="/hero-video-pingpong.mp4"
-          autoPlay muted loop playsInline preload="auto"
+          autoPlay muted loop playsInline preload="metadata"
           className="w-full h-full object-cover pointer-events-none select-none"
           style={{ opacity: 0.10 }}
         />

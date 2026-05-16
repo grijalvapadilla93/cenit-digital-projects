@@ -219,14 +219,14 @@ export function Portfolio() {
     <section id="work" ref={sectionRef} className="relative bg-black px-6 md:px-16">
       {projects.map((project, i) => (
         <div key={project.slug}>
-          <div className="relative w-full overflow-hidden cursor-pointer group"
-            style={{ height: "50vh", marginTop: 60, transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)" }}
+          <div className="relative w-full overflow-hidden cursor-pointer group md:h-[50vh] h-[35vh]"
+            style={{ marginTop: 60, transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)" }}
             onMouseMove={handleTiltMove}
             onMouseLeave={handleTiltLeave}
             onClick={() => setExpandedId(expandedId === project.slug ? null : project.slug)}
           >
             <div className="portfolio-img w-full h-full flex-shrink-0" style={{ willChange: "transform", transition: "opacity 0.5s ease" }}>
-              <img src="/Showcase-image.png" alt={project.name} className="w-full h-full object-cover opacity-40 group-hover:opacity-55 transition-opacity duration-700" />
+              <img src="/Showcase-image.png" alt={project.name} className="w-full h-full object-cover opacity-40 group-hover:opacity-55 transition-opacity duration-700" loading="lazy" />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 

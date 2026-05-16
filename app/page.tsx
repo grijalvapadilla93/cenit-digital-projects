@@ -17,7 +17,7 @@ export default function Home() {
         {/* Shared gradient background across WhoWeAre + Transition */}
         <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 0 }}>
           <div
-            className="absolute"
+            className="absolute gradient-orb"
             style={{
               width: "80vw", height: "80vw", maxWidth: "800px", maxHeight: "800px",
               borderRadius: "50%",
@@ -27,7 +27,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute"
+            className="absolute gradient-orb"
             style={{
               width: "60vw", height: "60vw", maxWidth: "600px", maxHeight: "600px",
               borderRadius: "50%",
@@ -37,7 +37,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute"
+            className="absolute gradient-orb"
             style={{
               width: "50vw", height: "50vw", maxWidth: "500px", maxHeight: "500px",
               borderRadius: "50%",

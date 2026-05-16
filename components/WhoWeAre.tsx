@@ -22,23 +22,26 @@ export function WhoWeAre() {
     let split: SplitType | null = null;
 
     const ctx = gsap.context(() => {
-      // Split the headline into characters
-      split = new SplitType(headline, { types: "chars" });
-      const chars = split.chars;
+      // Detect mobile
+      const isMobile = window.innerWidth < 768;
+      
+      // Split the headline — chars on desktop, words on mobile (lighter)
+      const split = new SplitType(headline, { types: isMobile ? "words" : "chars" });
+      const elements = split[isMobile ? "words" : "chars"];
 
-      if (!chars || chars.length === 0) return;
+      if (!elements || elements.length === 0) return;
 
-      // Set initial state on chars
-      gsap.set(chars, { opacity: 0, y: 40, rotateX: -40 });
+      // Set initial state
+      gsap.set(elements, { opacity: 0, y: isMobile ? 20 : 40, rotateX: isMobile ? 0 : -40 });
 
-      // Animate — cinematic, slow, one by one
-      gsap.to(chars, {
+      // Animate — lighter stagger on mobile
+      gsap.to(elements, {
         opacity: 1,
         y: 0,
         rotateX: 0,
-        duration: 0.5,
+        duration: isMobile ? 0.4 : 0.5,
         ease: "power3.out",
-        stagger: 0.025,
+        stagger: isMobile ? 0.04 : 0.025,
         scrollTrigger: {
           trigger: section,
           start: "top 75%",
