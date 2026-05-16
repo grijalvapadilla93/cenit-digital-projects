@@ -45,15 +45,15 @@ export function Transition() {
   }, []);
 
   return (
-    <section ref={ref} className="relative bg-black px-6 md:px-16 py-32 md:py-48">
-      <div className="max-w-3xl mx-auto text-center">
+    <section ref={ref} className="relative px-6 md:px-16 py-32 md:py-48">
+      <div className="max-w-3xl mx-auto text-center relative z-[1]">
         {/* Animated line — anticipation */}
         <div
           ref={lineRef}
-          style={{ width: 0, height: 1, background: "rgba(255,255,255,0.15)", margin: "0 auto 32px" }}
+          style={{ width: 0, height: 1, background: "rgba(255,255,255,0.4)", margin: "0 auto 32px" }}
         />
         <p
-          className="bridge-text font-light text-white/20 tracking-[0.1em] uppercase"
+          className="bridge-text font-light text-white/60 tracking-[0.1em] uppercase"
           style={{ fontSize: 11, marginBottom: 24, opacity: 0 }}
         >
           Our work

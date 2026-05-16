@@ -114,30 +114,32 @@ function ExpandCard({ project, onClose }: { project: typeof projects[number]; on
           <h3 className="font-light text-white tracking-[0.02em]" style={{ fontSize: "clamp(24px, 3vw, 36px)" }}>
             {project.name}
           </h3>
-          <button onClick={onClose} className="close-btn">close</button>
+          <button onClick={onClose} className="close-btn group">
+            <span className="transition-all duration-300 group-hover:text-amber">close</span>
+          </button>
         </div>
         <div className="line-divider mb-12" />
 
         <div className="reveal-item scroll-reveal mb-12">
-          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#666", marginBottom: 12 }}>
+          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 12 }}>
             Who They Are
           </p>
-          <p className="font-light text-gray-300 leading-relaxed" style={{ fontSize: 16, lineHeight: 1.7 }}>
+          <p className="font-light text-white leading-relaxed" style={{ fontSize: 16, lineHeight: 1.7 }}>
             {project.who}
           </p>
         </div>
 
         <div className="reveal-item scroll-reveal mb-12">
-          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#666", marginBottom: 12 }}>
+          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 12 }}>
             What We Did
           </p>
           {project.what.map((item) => (
-            <p key={item} className="font-light text-gray-300" style={{ fontSize: 15 }}>— {item}</p>
+            <p key={item} className="font-light text-white" style={{ fontSize: 15 }}>— {item}</p>
           ))}
         </div>
 
         <div className="reveal-item scroll-reveal mb-12">
-          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#666", marginBottom: 16 }}>
+          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 16 }}>
             The Result
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -146,7 +148,7 @@ function ExpandCard({ project, onClose }: { project: typeof projects[number]; on
                 <p className="font-light text-white" style={{ fontSize: "clamp(20px, 3vw, 36px)", lineHeight: 1 }}>
                   {stat.value}
                 </p>
-                <p className="font-light text-gray-500 mt-1" style={{ fontSize: 13 }}>
+                <p className="font-light text-white mt-1" style={{ fontSize: 13 }}>
                   {stat.label}
                 </p>
               </div>
@@ -158,7 +160,7 @@ function ExpandCard({ project, onClose }: { project: typeof projects[number]; on
           href={`https://${project.link}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-light text-white hover:text-white/70 transition-colors tracking-[0.06em]"
+          className="font-light text-white hover:text-white/80 transition-colors tracking-[0.06em]"
           style={{ fontSize: "clamp(16px, 2vw, 22px)" }}
         >
           {project.link} →
@@ -217,8 +219,7 @@ export function Portfolio() {
     <section id="work" ref={sectionRef} className="relative bg-black px-6 md:px-16">
       {projects.map((project, i) => (
         <div key={project.slug}>
-          <div
-            className="relative w-full overflow-hidden cursor-pointer group"
+          <div className="relative w-full overflow-hidden cursor-pointer group"
             style={{ height: "50vh", marginTop: 60, transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)" }}
             onMouseMove={handleTiltMove}
             onMouseLeave={handleTiltLeave}
@@ -231,22 +232,22 @@ export function Portfolio() {
 
             <div className="absolute inset-0 flex items-center px-6 md:px-16 pointer-events-none">
               <div className="project-number opacity-0" style={{ marginRight: 24, flexShrink: 0 }}>
-                <span className="font-light" style={{ fontSize: "clamp(48px, 8vw, 120px)", lineHeight: 1, color: "rgba(255,255,255,0.06)" }}>
+                <span className="font-light" style={{ fontSize: "clamp(48px, 8vw, 120px)", lineHeight: 1, color: "rgba(255,255,255,0.3)" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
               <div className="project-info opacity-0">
-                <p className="font-light tracking-[0.1em] uppercase" style={{ fontSize: 10, color: "#666", marginBottom: 8 }}>
+                <p className="font-light tracking-[0.1em] uppercase transition-colors duration-500 group-hover:text-amber" style={{ fontSize: 10, color: "#ffffff", marginBottom: 8 }}>
                   {project.tag}
                 </p>
-                <h2 className="font-light text-white tracking-[0.02em]" style={{ fontSize: "clamp(24px, 3.5vw, 48px)", lineHeight: 1.1 }}>
+                <h2 className="font-light text-white tracking-[0.02em] transition-all duration-500 group-hover:tracking-[0.04em]" style={{ fontSize: "clamp(24px, 3.5vw, 48px)", lineHeight: 1.1 }}>
                   {project.name}
                 </h2>
               </div>
             </div>
 
-            <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <span className="font-light tracking-[0.08em] text-white/30" style={{ fontSize: 11, textTransform: "uppercase" }}>
+            <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+              <span className="font-light tracking-[0.08em] text-amber/70" style={{ fontSize: 11, textTransform: "uppercase" }}>
                 Open ↓
               </span>
             </div>

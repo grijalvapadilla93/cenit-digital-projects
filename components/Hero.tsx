@@ -53,13 +53,13 @@ export function Hero() {
   return (
     <div ref={containerRef} data-hero className="relative w-full h-screen overflow-hidden bg-black">
       {/* LAYER 0: video */}
-      <div className="absolute inset-0 z-[0]">
+      <div className="absolute inset-0 z-[0] scale-110">
         <video
           ref={videoRef}
           src="/hero-video-pingpong.mp4"
           autoPlay muted loop playsInline preload="auto"
           className="w-full h-full object-cover pointer-events-none select-none"
-          style={{ opacity: 0.15 }}
+          style={{ opacity: 0.10 }}
         />
       </div>
 
@@ -99,19 +99,19 @@ export function Hero() {
           Cenit
         </h1>
         <h1
-          className="font-playfair text-white/60 tracking-[0.06em] uppercase"
+          className="font-playfair text-white/80 tracking-[0.06em] uppercase"
           style={{ fontSize: "clamp(44px, 8vw, 140px)", lineHeight: 1.15, letterSpacing: "0.1em" }}
         >
           Digital
         </h1>
         <h1
-          className="font-playfair text-white/40 tracking-[0.06em] uppercase"
+          className="font-playfair text-white/60 tracking-[0.06em] uppercase"
           style={{ fontSize: "clamp(44px, 8vw, 140px)", lineHeight: 1.15, letterSpacing: "0.1em" }}
         >
           Projects
         </h1>
         <p
-          className="font-light text-gray-500 tracking-[0.08em] uppercase"
+          className="font-light text-white tracking-[0.08em] uppercase"
           style={{ marginTop: 24, fontSize: "clamp(10px, 1.2vw, 14px)" }}
         >
           Digital media marketing & solutions from Miami

@@ -9,22 +9,32 @@ const links = [
 ];
 
 export function Header() {
-  const [visible, setVisible] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const hero = document.querySelector("[data-hero]");
-    if (!hero) return;
+    const onScroll = () => {
+      setScrolled(window.scrollY > window.innerHeight * 0.8);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
+  useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Visible while hero is in view, disappears when hero scrolls out
-        setVisible(entry.isIntersecting);
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        }
       },
-      { threshold: [0, 0.3, 1] }
+      { threshold: 0.3, rootMargin: "-80px 0px 0px 0px" }
     );
 
-    observer.observe(hero);
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
 
@@ -38,27 +48,54 @@ export function Header() {
 
   return (
     <div
-      ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-6 py-6 transition-all duration-700"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(-20px)",
-        pointerEvents: visible ? "auto" : "none",
+        background: scrolled
+          ? "rgba(0, 0, 0, 0.85)"
+          : "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%)",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(198, 167, 106, 0.08)" : "1px solid transparent",
       }}
     >
-      <nav className="flex items-center gap-8">
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={(e) => handleClick(e, link.href)}
-            className="font-light tracking-[0.08em] uppercase text-white/50 hover:text-white transition-colors duration-300"
-            style={{ fontSize: 12, letterSpacing: "0.1em" }}
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-16 py-4">
+        {/* Logo / brand */}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="font-light tracking-[0.15em] uppercase text-white/90 hover:text-amber transition-colors duration-300"
+          style={{ fontSize: 13, letterSpacing: "0.15em" }}
+        >
+          Cenit
+        </a>
+
+        {/* Navigation */}
+        <nav className="flex items-center gap-8">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => handleClick(e, link.href)}
+              className="font-light tracking-[0.1em] uppercase transition-all duration-300"
+              style={{
+                fontSize: 11,
+                color: activeSection === link.href ? "#C6A76A" : "rgba(255,255,255,0.65)",
+                letterSpacing: "0.12em",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#C6A76A")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color =
+                  activeSection === link.href ? "#C6A76A" : "rgba(255,255,255,0.65)")
+              }
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </div>
   );
 }

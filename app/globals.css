@@ -3,6 +3,9 @@
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-playfair: 'Playfair Display', 'Georgia', serif;
+  --color-amber: #C6A76A;
+  --color-amber-light: #D4B87A;
+  --color-amber-dark: #A8894E;
 }
 
 html {
@@ -12,6 +15,7 @@ html {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,14 +25,40 @@ body {
   overflow-x: hidden;
 }
 
+/* Subtle noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
 ::selection {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(198, 167, 106, 0.4);
   color: #ffffff;
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #000000; }
-::-webkit-scrollbar-thumb { background: #555555; border-radius: 0; }
+::-webkit-scrollbar-thumb { background: rgba(198, 167, 106, 0.3); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: rgba(198, 167, 106, 0.5); }
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: rgba(198, 167, 106, 0.5);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
 
 /* Obsidian-style hero that pins and shrinks */
 .hero-pin {
@@ -55,26 +85,26 @@ body {
 .line-divider {
   width: 60px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* Link style */
 .obsidian-link {
   font-size: 14px;
-  color: #888888;
+  color: #ffffff;
   text-decoration: none;
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
   cursor: pointer;
 }
 .obsidian-link:hover {
-  color: #ffffff;
+  color: #C6A76A;
 }
 
 /* Close button */
 .close-btn {
   font-size: 14px;
-  color: #888888;
+  color: #ffffff;
   cursor: pointer;
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
@@ -82,7 +112,7 @@ body {
   border: none;
 }
 .close-btn:hover {
-  color: #ffffff;
+  color: #C6A76A;
 }
 
 /* Bridge reveal utility */
@@ -100,4 +130,49 @@ body {
 /* Portfolio expand container */
 .portfolio-expanded {
   overflow: hidden;
+}
+
+/* Gradient orb animations */
+@keyframes driftOrb1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -20px) scale(1.1); }
+}
+@keyframes driftOrb2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-20px, 30px) scale(1.15); }
+}
+@keyframes driftOrb3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(15px, 15px) scale(0.9); }
+}
+
+/* Decorative SVG divider between sections */
+.section-divider {
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+}
+.section-divider svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Amber accent utility */
+.amber-accent {
+  color: #C6A76A;
+}
+.amber-border {
+  border-color: rgba(198, 167, 106, 0.3);
+}
+
+/* Character hover effect on links */
+.hover-char {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.3s ease;
+}
+.hover-char:hover {
+  transform: translateY(-2px);
 }

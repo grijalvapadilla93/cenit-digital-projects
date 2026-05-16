@@ -77,7 +77,7 @@ export function WhatWeDo() {
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="section-header mb-24">
-          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#888888", marginBottom: 16 }}>
+          <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 16 }}>
             What We Do
           </p>
         </div>
@@ -86,14 +86,14 @@ export function WhatWeDo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-20">
           {services.map((group) => (
             <div key={group.group}>
-              <p className="service-item mb-10" style={{ fontSize: 11, color: "#555555", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              <p className="service-item mb-10" style={{ fontSize: 11, color: "#ffffff", letterSpacing: "0.15em", textTransform: "uppercase" }}>
                 <span className="item-line inline-block w-4 h-[1px] bg-white/20 align-middle mr-2" style={{ transformOrigin: "left center" }} />
                 <span className="item-text inline-block">{group.group} — {group.label}</span>
               </p>
               <div className="space-y-5">
                 {group.items.map((item) => (
                   <p key={item} className="service-item font-light text-white tracking-[0.02em]" style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.4 }}>
-                    <span className="item-line inline-block w-3 h-[1px] bg-white/15 align-middle mr-2" style={{ transformOrigin: "left center" }} />
+                    <span className="item-line inline-block w-3 h-[1px] bg-white/40 align-middle mr-2" style={{ transformOrigin: "left center" }} />
                     <span className="item-text inline-block">{item}</span>
                   </p>
                 ))}
@@ -105,12 +105,12 @@ export function WhatWeDo() {
         {/* Tagline */}
         <div className="service-item text-center mt-20 text-opacity-0">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="item-line w-6 h-[1px] bg-white/15" style={{ transformOrigin: "center" }} />
-            <div className="item-line w-6 h-[1px] bg-white/15" style={{ transformOrigin: "center" }} />
+            <div className="item-line w-6 h-[1px] bg-white/40" style={{ transformOrigin: "center" }} />
+            <div className="item-line w-6 h-[1px] bg-white/40" style={{ transformOrigin: "center" }} />
           </div>
           <p
             className="item-text font-light tracking-[0.02em] leading-relaxed mx-auto"
-            style={{ fontSize: "clamp(16px, 2vw, 24px)", lineHeight: 1.6, color: "#888888", maxWidth: 500 }}
+            style={{ fontSize: "clamp(16px, 2vw, 24px)", lineHeight: 1.6, color: "#ffffff", maxWidth: 500 }}
           >
             We don&apos;t just put you on the internet.
             <br />
