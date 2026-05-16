@@ -83,6 +83,17 @@ body::before {
   opacity: 1;
   transform: translateY(0);
 }
+/* Mobile: scroll-reveal visible by default (IntersectionObserver may not fire) */
+@media (max-width: 767px) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .item-text, .item-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
 /* Line divider */
 .line-divider {
