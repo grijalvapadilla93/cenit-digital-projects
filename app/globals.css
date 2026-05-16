@@ -104,6 +104,7 @@ body::before {
   }
   .service-item .item-line, 
   .service-item .item-text {
+    opacity: 1 !important;
   }
   /* Brighter orbs on mobile */
   .gradient-orb {
