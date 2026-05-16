@@ -62,7 +62,7 @@ export default function WorkIntro() {
     <div ref={sectionRef} className="relative bg-black px-6 py-24 md:py-32 overflow-hidden">
       {/* Title */}
       <div ref={titleRef} className="text-center mb-20" style={{ opacity: 0 }}>
-        <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#888888", marginBottom: 12 }}>
+        <p className="font-light uppercase tracking-[0.1em]" style={{ fontSize: 11, color: "#ffffff", marginBottom: 12 }}>
           Our work
         </p>
       </div>
@@ -80,7 +80,7 @@ export default function WorkIntro() {
               <h3 className="font-light text-white tracking-[0.04em] uppercase" style={{ fontSize: "clamp(20px, 3vw, 32px)", lineHeight: 1.3 }}>
                 {project.name}
               </h3>
-              <p className="font-light tracking-[0.06em] uppercase" style={{ fontSize: 11, color: "#666", marginTop: 4 }}>
+              <p className="font-light tracking-[0.06em] uppercase" style={{ fontSize: 11, color: "#ffffff", marginTop: 4 }}>
                 {project.sub}
               </p>
             </div>
