@@ -25,46 +25,29 @@ export function Hero() {
     const ctx = gsap.context(() => {
       // ─── ENTRANCE ANIMATION (on mount) ───
 
-      // Video slowly reveals
-      gsap.fromTo(videoRef.current, { opacity: 0 }, { opacity: 0.15, duration: 2, ease: "power2.out" });
+      // Set initial states
+      gsap.set(videoRef.current, { opacity: 0 });
+      gsap.set([img1Ref.current, img2Ref.current, img3Ref.current], { opacity: 0, y: 80, rotate: -8, scale: 0.9 });
+      gsap.set(labelRef.current, { opacity: 0, y: 15 });
+      const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
+      if (titleLines) gsap.set(titleLines, { opacity: 0, y: 40, rotateX: -15 });
+      gsap.set(ctaRef.current, { opacity: 0, y: 20 });
+      gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
-      // Images float in from slightly rotated positions
-      gsap.fromTo(
-        [img1Ref.current, img2Ref.current, img3Ref.current],
-        { opacity: 0, y: 80, rotate: -8, scale: 0.9 },
-        {
+      // Entrance timeline — runs once on load
+      const tl = gsap.timeline();
+      tl.to(videoRef.current, { opacity: 0.15, duration: 2, ease: "power2.out" })
+        .to([img1Ref.current, img2Ref.current, img3Ref.current], {
           opacity: 1, y: 0, rotate: 0, scale: 1,
           duration: 1.6, ease: "power4.out", stagger: 0.15,
-        }
-      );
-
-      // Label fades up
-      gsap.fromTo(labelRef.current, { opacity: 0, y: 15 }, {
-        opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 0.3,
-      });
-
-      // Title lines stagger — each word floats up from below
-      const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
-      if (titleLines) {
-        gsap.fromTo(
-          titleLines,
-          { opacity: 0, y: 40, rotateX: -15 },
-          {
-            opacity: 1, y: 0, rotateX: 0,
-            duration: 0.9, ease: "power3.out", stagger: 0.2,
-          }
-        );
-      }
-
-      // CTA fades in after title
-      gsap.fromTo(ctaRef.current, { opacity: 0, y: 20 }, {
-        opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 1.4,
-      });
-
-      // Scroll indicator fades in last
-      gsap.fromTo(scrollIndicatorRef.current, { opacity: 0 }, {
-        opacity: 1, duration: 1, ease: "power2.out", delay: 2,
-      });
+        }, "-=0.5")
+        .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.8")
+        .to(titleLines, {
+          opacity: 1, y: 0, rotateX: 0,
+          duration: 0.9, ease: "power3.out", stagger: 0.2,
+        }, "-=0.3")
+        .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
+        .to(scrollIndicatorRef.current, { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.2");
 
       // ─── SCROLL ANIMATIONS ───
 
@@ -140,7 +123,6 @@ export function Hero() {
           src="/hero-video-pingpong.mp4"
           autoPlay muted loop playsInline preload="metadata"
           className="w-full h-full object-cover pointer-events-none select-none"
-          style={{ opacity: 0 }}
         />
       </div>
 
