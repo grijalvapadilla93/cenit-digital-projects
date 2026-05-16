@@ -52,35 +52,34 @@ export function WhatWeDo() {
         }
       });
 
-      // Each service-item animates in with timeline (desktop only — mobile keeps visible)
-      mm.add("(min-width: 768px)", () => {
-        const items = gsap.utils.toArray<HTMLElement>(".service-item");
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: el,
-            start: "top 55%",
-            toggleActions: "play none none none",
-          },
-        });
+      // Each service-item animates in with timeline (desktop + mobile)
+      // Mobile uses toggleActions (one-shot, no scrub)
+      const items = gsap.utils.toArray<HTMLElement>(".service-item");
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 55%",
+          toggleActions: "play none none none",
+        },
+      });
 
-        items.forEach((item, i) => {
-          const line = item.querySelector<HTMLElement>(".item-line");
+      items.forEach((item, i) => {
+        const line = item.querySelector<HTMLElement>(".item-line");
 
-          // Line draws from left
-          if (line) {
-            tl.fromTo(line, { scaleX: 0, opacity: 0 }, {
-              scaleX: 1, opacity: 1, duration: 0.3, ease: "power2.inOut",
-            }, i * 0.1);
-          }
+        // Line draws from left
+        if (line) {
+          tl.fromTo(line, { scaleX: 0, opacity: 0 }, {
+            scaleX: 1, opacity: 1, duration: 0.3, ease: "power2.inOut",
+          }, i * 0.1);
+        }
 
-          // Text fades and shifts right
-          const text = item.querySelector<HTMLElement>(".item-text");
-          if (text) {
-            tl.fromTo(text, { x: -15, opacity: 0 }, {
-              x: 0, opacity: 1, duration: 0.25, ease: "power3.out",
-            }, i * 0.1 + 0.05);
-          }
-        });
+        // Text fades and shifts right
+        const text = item.querySelector<HTMLElement>(".item-text");
+        if (text) {
+          tl.fromTo(text, { x: -15, opacity: 0 }, {
+            x: 0, opacity: 1, duration: 0.25, ease: "power3.out",
+          }, i * 0.1 + 0.05);
+        }
       });
     }, el);
 
