@@ -48,9 +48,8 @@ export function Hero() {
           .to(scrollIndicatorRef.current, { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.2");
       });
 
-      // Mobile entrance — simpler, no images (they're hidden)
+      // Mobile entrance — simpler, no images (they're hidden), no video opacity (keep poster visible)
       mm.add("(max-width: 767px)", () => {
-        gsap.set(videoRef.current, { opacity: 0 });
         gsap.set(labelRef.current, { opacity: 0, y: 15 });
         const titleLines = textRef.current?.querySelectorAll<HTMLElement>(".hero-title-line");
         if (titleLines) gsap.set(titleLines, { y: 15 });
@@ -58,8 +57,7 @@ export function Hero() {
         gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
         const tl = gsap.timeline();
-        tl.to(videoRef.current, { opacity: 0.15, duration: 1.5, ease: "power2.out" })
-          .to(labelRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3")
+        tl.to(labelRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
           .to(titleLines, { y: 0, duration: 0.6, ease: "power3.out", stagger: 0.15 }, "-=0.2")
           .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.2")
           .to(scrollIndicatorRef.current, { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.2");
