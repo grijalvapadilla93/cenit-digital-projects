@@ -64,31 +64,31 @@ const projects = [
     ],
     stats: [
       { label: "Booking requests via web", value: "+95%" },
-      { label: "Revenue attributed", value: "Q12K/mo" },
+      { label: "Revenue attributed", value: "$12K/mo" },
       { label: "New elite contracts", value: "3" },
     ],
     link: "crystalsurfaceco.com",
   },
   {
-    slug: "casa-alba",
-    name: "Casa Alba",
-    tag: "Mediterranean coastal cuisine",
-    previewUrl: "https://casaalbamiami.com",
-    who: "Mediterranean restaurant in Wynwood with outdoor terrace, chef imported from Barcelona. Seafood, natural wines, artisan cocktails. Target: 25-45, young professional.",
+    slug: "al-carbon",
+    name: "Al Carbón",
+    tag: "Argentine steakhouse",
+    previewUrl: "https://al-carbon.vercel.app/",
+    who: "Argentine parrilla in Brickell blending traditional asado techniques with a modern Miami dining scene. USDA prime cuts, imported Malbecs, live piano Fridays. Target: 28-50, professionals & foodies.",
     what: [
-      "Website from scratch",
-      "Monthly food photography content creation",
-      "Social media management",
-      "Ad campaigns (Instagram + Google)",
-      "Reservation chatbot",
-      "QR menu system",
+      "Website from scratch with reservation system",
+      "Menu with photography & QR ordering",
+      "Instagram growth & content strategy",
+      "Google Ads + Meta campaigns",
+      "WhatsApp booking chatbot",
+      "Review & reputation management",
     ],
     stats: [
-      { label: "Website reservations", value: "+340%" },
-      { label: "Instagram", value: "800 → 12K (3 mo)" },
-      { label: "Availability", value: "Sold out Fri-Sat" },
+      { label: "Reservations via web", value: "+280%" },
+      { label: "Instagram growth", value: "1.2K → 15K" },
+      { label: "Avg ticket increase", value: "+32%" },
     ],
-    link: "casaalbamiami.com",
+    link: "al-carbon.vercel.app",
   },
 ];
 
@@ -110,23 +110,19 @@ function BrowserFrame({ url }: { url: string }) {
     <div className="w-full border border-white/[0.08] overflow-hidden bg-white/[0.02]">
       {/* Browser chrome bar */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-white/[0.06] bg-black">
-        {/* Traffic light dots */}
         <div className="flex items-center gap-[5px] flex-shrink-0">
           <div className="w-[10px] h-[10px] rounded-full bg-red-500/40" />
           <div className="w-[10px] h-[10px] rounded-full bg-yellow-500/40" />
           <div className="w-[10px] h-[10px] rounded-full bg-green-500/40" />
         </div>
-        {/* URL bar */}
         <div className="flex-1 mx-2">
           <div className="text-center text-[10px] font-light tracking-[0.05em] text-white/40 truncate px-3 py-1 bg-white/[0.03] max-w-fit mx-auto">
             {url.replace(/^https?:\/\//, "")}
           </div>
         </div>
-        {/* Spacer for balance */}
         <div className="w-[46px] flex-shrink-0" />
       </div>
 
-      {/* Iframe container */}
       <div className="relative w-full" style={{ height: "clamp(300px, 55vh, 600px)" }}>
         {!loaded && (
           <div className="absolute inset-0 flex items-center justify-center">
@@ -164,55 +160,48 @@ function ProjectInfo({ project }: { project: typeof projects[number] }) {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="mt-12 md:mt-16 max-w-2xl">
+      <div className="mt-10 md:mt-14 max-w-2xl">
+        {/* WHO — compact dashboard card */}
         <div className="mb-10">
-          <p
-            className="font-light uppercase tracking-[0.1em] text-white/50 mb-3"
-            style={{ fontSize: 11 }}
-          >
-            Who They Are
+          <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-4" style={{ fontSize: 11 }}>
+            Profile
           </p>
-          <p
-            className="font-light text-white/80 leading-relaxed"
-            style={{ fontSize: 16, lineHeight: 1.7 }}
-          >
+          <p className="font-light text-white/80 leading-relaxed" style={{ fontSize: 15, lineHeight: 1.75 }}>
             {project.who}
           </p>
         </div>
 
+        {/* WHAT — service tags as chips */}
         <div className="mb-10">
-          <p
-            className="font-light uppercase tracking-[0.1em] text-white/50 mb-4"
-            style={{ fontSize: 11 }}
-          >
-            What We Did
+          <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-4" style={{ fontSize: 11 }}>
+            Services
           </p>
-          <div className="space-y-2">
+          <div className="flex flex-wrap gap-2">
             {project.what.map((item) => (
-              <p key={item} className="font-light text-white/70" style={{ fontSize: 15 }}>
-                — {item}
-              </p>
+              <span
+                key={item}
+                className="font-light tracking-[0.03em] inline-block px-3 py-1.5 border border-white/[0.1] text-white/70"
+                style={{ fontSize: 12 }}
+              >
+                {item}
+              </span>
             ))}
           </div>
         </div>
 
+        {/* RESULT — dashboard style metrics */}
         <div className="mb-10">
-          <p
-            className="font-light uppercase tracking-[0.1em] text-white/50 mb-4"
-            style={{ fontSize: 11 }}
-          >
-            The Result
+          <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-5" style={{ fontSize: 11 }}>
+            Metrics
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/[0.06]">
             {project.stats.map((stat) => (
-              <div key={stat.label}>
-                <p
-                  className="font-light text-white"
-                  style={{ fontSize: "clamp(20px, 3vw, 36px)", lineHeight: 1 }}
-                >
+              <div key={stat.label} className="bg-black px-5 py-5">
+                <p className="font-light text-white leading-none" style={{ fontSize: "clamp(24px, 3vw, 38px)" }}>
                   {stat.value}
                 </p>
-                <p className="font-light text-white/50 mt-1" style={{ fontSize: 13 }}>
+                <div className="w-6 h-px bg-white/15 mt-3 mb-2" />
+                <p className="font-light text-white/40" style={{ fontSize: 11 }}>
                   {stat.label}
                 </p>
               </div>
@@ -220,12 +209,13 @@ function ProjectInfo({ project }: { project: typeof projects[number] }) {
           </div>
         </div>
 
+        {/* LINK */}
         <a
           href={`https://${project.link}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block font-light text-white/70 hover:text-white transition-colors tracking-[0.06em]"
-          style={{ fontSize: "clamp(14px, 1.8vw, 20px)" }}
+          className="inline-block font-light text-white/60 hover:text-white transition-colors tracking-[0.06em]"
+          style={{ fontSize: "clamp(13px, 1.6vw, 18px)" }}
         >
           {project.link} →
         </a>
@@ -244,10 +234,9 @@ export function Portfolio() {
 
   const handleSelect = useCallback((i: number) => {
     setActiveIndex(i);
-    setIframeKey((k) => k + 1); // force iframe remount so it reloads
+    setIframeKey((k) => k + 1);
   }, []);
 
-  // GSAP scroll animations for the sidebar
   useEffect(() => {
     const ctx = gsap.context(() => {
       const items = sidebarRef.current?.querySelectorAll<HTMLElement>(".sidebar-item");
@@ -256,16 +245,8 @@ export function Portfolio() {
           el,
           { opacity: 0, y: 30 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              end: "top 65%",
-              scrub: false,
-            },
+            opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", end: "top 65%", scrub: false },
             delay: i * 0.1,
           }
         );
@@ -278,11 +259,28 @@ export function Portfolio() {
     <section
       id="work"
       ref={sectionRef}
-      className="relative bg-black px-6 md:px-16 py-24 md:py-32"
+      className="relative bg-black px-6 md:px-16 py-24 md:py-32 overflow-hidden"
     >
-      <div className="mx-auto" style={{ maxWidth: 1400 }}>
+      {/* Subtle glow behind preview area — gives depth on mobile without clutter */}
+      <div
+        className="absolute pointer-events-none select-none md:right-0 md:top-0 md:w-1/2 md:h-full w-full h-full"
+        aria-hidden
+      >
+        <div
+          className="absolute"
+          style={{
+            width: "70vw", height: "70vw", maxWidth: 600, maxHeight: 600,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)",
+            filter: "blur(80px)",
+            top: "10%", right: "-10%",
+          }}
+        />
+      </div>
+
+      <div className="mx-auto relative z-[1]" style={{ maxWidth: 1400 }}>
         <div className="flex flex-col md:flex-row md:gap-16 lg:gap-20">
-          {/* ─── Right (desktop) / Top (mobile): project list sidebar ─── */}
+          {/* ─── Right (desktop) / Top (mobile): project list ─── */}
           <div
             ref={sidebarRef}
             className="w-full md:w-[340px] lg:w-[400px] flex-shrink-0 md:order-2"
@@ -304,11 +302,8 @@ export function Portfolio() {
                       <span
                         className="font-light select-none flex-shrink-0"
                         style={{
-                          fontSize: "clamp(32px, 5vw, 56px)",
-                          lineHeight: 0.85,
-                          color: isActive
-                            ? "rgba(255,255,255,0.5)"
-                            : "rgba(255,255,255,0.08)",
+                          fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 0.85,
+                          color: isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.08)",
                           transition: "color 0.5s ease",
                         }}
                       >
@@ -316,17 +311,13 @@ export function Portfolio() {
                       </span>
                       <div className="min-w-0 pt-1 md:pt-2">
                         <p
-                          className={`font-light tracking-[0.1em] uppercase mb-2 transition-colors duration-500 ${
-                            isActive ? "text-white" : "text-white/30"
-                          }`}
+                          className={`font-light tracking-[0.1em] uppercase mb-2 transition-colors duration-500 ${isActive ? "text-white" : "text-white/30"}`}
                           style={{ fontSize: 10 }}
                         >
                           {project.tag}
                         </p>
                         <h3
-                          className={`font-light tracking-[0.02em] transition-all duration-500 ${
-                            isActive ? "text-white" : "text-white/40"
-                          }`}
+                          className={`font-light tracking-[0.02em] transition-all duration-500 ${isActive ? "text-white" : "text-white/40"}`}
                           style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.15 }}
                         >
                           {project.name}
@@ -349,13 +340,7 @@ export function Portfolio() {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                {/* Browser mockup with iframe */}
-                <BrowserFrame
-                  key={`iframe-${iframeKey}`}
-                  url={activeProject.previewUrl}
-                />
-
-                {/* Project info */}
+                <BrowserFrame key={`iframe-${iframeKey}`} url={activeProject.previewUrl} />
                 <ProjectInfo project={activeProject} />
               </motion.div>
             </AnimatePresence>
