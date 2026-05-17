@@ -22,83 +22,101 @@ export function WhoWeAre() {
     let split: SplitType | null = null;
 
     const ctx = gsap.context(() => {
-      // Detect mobile — skip all animations on mobile, content visible by default
       const mm = gsap.matchMedia();
-      
-      mm.add("(min-width: 768px)", () => {
-        // Split the headline — chars on desktop
-        split = new SplitType(headline, { types: "chars" });
-        const elements = split.chars;
 
-        if (!elements || elements.length === 0) return;
+      // Same animations for ALL screen sizes — desktop and mobile
+      mm.add("(min-width: 0px)", () => {
+        // Only split on wider screens (too many chars on tiny phones breaks layout)
+        const isSmall = window.innerWidth < 480;
 
-        // Set initial state — everything starts hidden on desktop
-        gsap.set(elements, { opacity: 0, y: 40, rotateX: -40 });
-        gsap.set(body, { opacity: 0, y: 20 });
-        gsap.set(".wwa-divider", { width: 0, opacity: 0 });
+        if (!isSmall) {
+          split = new SplitType(headline, { types: "chars" });
+        }
+        const elements = isSmall ? null : split?.chars;
 
-        // Animate headline — cinematic, slow, one by one
-        gsap.to(elements, {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          duration: 0.5,
-          ease: "power3.out",
-          stagger: 0.025,
-          scrollTrigger: {
-            trigger: section,
-            start: "top 75%",
-            end: "top 35%",
-            scrub: false,
-            toggleActions: "play none none none",
-          },
-        });
+        if (elements && elements.length > 0) {
+          // SplitType path — character animation
+          gsap.set(elements, { opacity: 0, y: 40, rotateX: -40 });
+          gsap.to(elements, {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.5,
+            ease: "power3.out",
+            stagger: 0.025,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 75%",
+              end: "top 35%",
+              scrub: false,
+              toggleActions: "play none none none",
+            },
+          });
+        } else {
+          // No SplitType — just fade the whole headline in
+          gsap.set(headline, { opacity: 0, y: 30 });
+          gsap.to(headline, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 75%",
+              toggleActions: "play none none none",
+            },
+          });
+        }
 
         // Body text fades in after
+        gsap.set(body, { opacity: 0, y: 20 });
         gsap.to(body, {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.8,
           ease: "power3.out",
-          delay: 1,
+          delay: 0.5,
           scrollTrigger: {
             trigger: section,
-            start: "top 60%",
+            start: "top 65%",
             scrub: false,
             toggleActions: "play none none none",
           },
         });
 
         // Thin animated line divider
+        gsap.set(".wwa-divider", { width: 0, opacity: 0 });
         gsap.to(".wwa-divider", {
           width: 60,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.6,
           ease: "power3.inOut",
-          delay: 0.8,
+          delay: 0.3,
           scrollTrigger: {
             trigger: section,
-            start: "top 60%",
+            start: "top 65%",
             scrub: false,
             toggleActions: "play none none none",
           },
         });
-      }); // end desktop matchMedia
-
-      // Mobile: no GSAP at all — everything visible via CSS
-      mm.add("(max-width: 767px)", () => {
-        // Do nothing — CSS handles everything on mobile
-      }); // end mobile matchMedia
+      });
     }, section);
+
+    // Safety net: if GSAP/ScrollTrigger fails to fire, force visibility after 3s
+    const safetyTimer = setTimeout(() => {
+      if (!mounted) return;
+      gsap.set(headline, { opacity: 1, y: 0, clearProps: "opacity,y,rotateX" });
+      gsap.set(body, { opacity: 1, y: 0, clearProps: "opacity,y" });
+      gsap.set(".wwa-divider", { opacity: 1, width: 60, clearProps: "opacity,width" });
+    }, 3000);
 
     return () => {
       mounted = false;
-      // Revert SplitType first (restore original DOM)
+      clearTimeout(safetyTimer);
       if (split) {
         split.revert();
         split = null;
       }
-      // Then revert GSAP context (kill ScrollTriggers + tweens)
       ctx.revert();
     };
   }, []);

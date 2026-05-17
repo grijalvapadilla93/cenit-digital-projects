@@ -116,17 +116,6 @@ body::before {
     opacity: 1 !important;
     transform: none !important;
   }
-  .wwa-divider {
-    opacity: 1 !important;
-    width: 60px !important;
-  }
-  .who-we-are-body {
-    opacity: 1 !important;
-  }
-  .who-we-are-headline {
-    opacity: 1 !important;
-    font-size: clamp(56px, 8vw, 80px) !important;
-  }
 }
 
 /* Line divider */
