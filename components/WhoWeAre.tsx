@@ -87,8 +87,7 @@ export function WhoWeAre() {
 
       // Mobile: no GSAP at all — everything visible via CSS
       mm.add("(max-width: 767px)", () => {
-        // Just clear any GSAP inline styles so CSS !important takes over
-        gsap.set([headline, body, ".wwa-divider"], { clearProps: "all" });
+        // Do nothing — CSS handles everything on mobile
       }); // end mobile matchMedia
     }, section);
 
@@ -123,7 +122,7 @@ export function WhoWeAre() {
           ref={headlineRef}
           className="font-light text-white tracking-[0.01em] who-we-are-headline"
           style={{
-            fontSize: "clamp(48px, 5vw, 80px)",
+            fontSize: "clamp(36px, 5vw, 80px)",
             lineHeight: 1.15,
             perspective: 800,
           }}
