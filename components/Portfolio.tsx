@@ -282,32 +282,10 @@ export function Portfolio() {
     >
       <div className="mx-auto" style={{ maxWidth: 1400 }}>
         <div className="flex flex-col md:flex-row md:gap-16 lg:gap-20">
-          {/* ─── Left: preview + info ─── */}
-          <div className="flex-1 min-w-0 md:order-1">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeProject.slug}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {/* Browser mockup with iframe */}
-                <BrowserFrame
-                  key={`iframe-${iframeKey}`}
-                  url={activeProject.previewUrl}
-                />
-
-                {/* Project info */}
-                <ProjectInfo project={activeProject} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* ─── Right: project list sidebar ─── */}
+          {/* ─── Right (desktop) / Top (mobile): project list sidebar ─── */}
           <div
             ref={sidebarRef}
-            className="w-full md:w-[340px] lg:w-[400px] flex-shrink-0 md:order-2 mt-8 md:mt-0"
+            className="w-full md:w-[340px] lg:w-[400px] flex-shrink-0 md:order-2"
           >
             <div className="flex md:flex-col gap-0 overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-6 md:mx-0 px-6 md:px-0 scroll-smooth snap-x snap-mandatory">
               {projects.map((project, i) => {
@@ -359,6 +337,28 @@ export function Portfolio() {
                 );
               })}
             </div>
+          </div>
+
+          {/* ─── Left (desktop) / Bottom (mobile): preview + info ─── */}
+          <div className="flex-1 min-w-0 md:order-1 mt-8 md:mt-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeProject.slug}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {/* Browser mockup with iframe */}
+                <BrowserFrame
+                  key={`iframe-${iframeKey}`}
+                  url={activeProject.previewUrl}
+                />
+
+                {/* Project info */}
+                <ProjectInfo project={activeProject} />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
