@@ -28,7 +28,7 @@ function createBeam(w: number, h: number, mobileBoost: number): Beam {
     baseAngle: angle,
     speed: 0.8 + Math.random() * 1.0,
     baseSpeed: 0.8 + Math.random() * 1.0,
-    opacity: (0.08 + Math.random() * 0.1) * mobileBoost,
+    opacity: (0.05 + Math.random() * 0.08) * mobileBoost,
     hue: 30 + Math.random() * 20,
     pulse: Math.random() * Math.PI * 2,
     pulseSpeed: 0.012 + Math.random() * 0.018,
@@ -46,7 +46,7 @@ function resetBeam(beam: Beam, index: number, total: number, w: number, h: numbe
   beam.baseSpeed = 0.8 + Math.random() * 1.0;
   beam.speed = beam.baseSpeed;
   beam.hue = 30 + (index * 20) / total;
-  beam.opacity = (0.08 + Math.random() * 0.1);
+  beam.opacity = (0.05 + Math.random() * 0.08);
   return beam;
 }
 
@@ -182,7 +182,7 @@ export default function LightBeams() {
         left: 0,
         width: "100%",
         height: "100%" as const,
-        zIndex: 10,
+        zIndex: 0,
       }}
     >
       <canvas
