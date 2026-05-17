@@ -74,7 +74,6 @@ export default function LightBeams() {
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const containerRef = useRef<HTMLDivElement>(null);
   const MINIMUM_BEAMS = 18;
-  const IS_MOBILE = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -82,8 +81,6 @@ export default function LightBeams() {
     if (!canvas || !container) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    const isMobile = window.innerWidth < 768;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -108,7 +105,7 @@ export default function LightBeams() {
         canvas.style.height = `${h}px`;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        const totalBeams = isMobile ? Math.round(MINIMUM_BEAMS * 0.8) : Math.round(MINIMUM_BEAMS * 1.5);
+        const totalBeams = MINIMUM_BEAMS * 1.5;
         beamsRef.current = Array.from({ length: totalBeams }, () => createBeam(w, h));
       });
     };
@@ -188,7 +185,7 @@ export default function LightBeams() {
           position: "absolute",
           top: 0,
           left: 0,
-          filter: IS_MOBILE ? "blur(12px)" : "blur(25px)",
+          filter: "blur(25px)",
           willChange: "transform",
         }}
       />
