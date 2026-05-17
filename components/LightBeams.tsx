@@ -17,7 +17,7 @@ interface Beam {
   baseAngle: number;
 }
 
-function createBeam(w: number, h: number): Beam {
+function createBeam(w: number, h: number, mobileBoost: number): Beam {
   const angle = -35 + Math.random() * 10;
   return {
     x: Math.random() * w * 1.5 - w * 0.25,
@@ -28,7 +28,7 @@ function createBeam(w: number, h: number): Beam {
     baseAngle: angle,
     speed: 0.3 + Math.random() * 0.5,
     baseSpeed: 0.3 + Math.random() * 0.5,
-    opacity: 0.05 + Math.random() * 0.07,
+    opacity: (0.05 + Math.random() * 0.07) * mobileBoost,
     hue: 30 + Math.random() * 20,
     pulse: Math.random() * Math.PI * 2,
     pulseSpeed: 0.012 + Math.random() * 0.018,
@@ -82,6 +82,11 @@ export default function LightBeams() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Mobile boost: higher opacity so beams are visible on small screens
+    const isMobile = window.innerWidth < 768;
+    const mobileBoost = isMobile ? 3.0 : 1.0;
+    const mobileBlur = isMobile ? "blur(12px)" : "blur(25px)";
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
       mouseRef.current = {
@@ -106,13 +111,16 @@ export default function LightBeams() {
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         const totalBeams = MINIMUM_BEAMS * 1.5;
-        beamsRef.current = Array.from({ length: totalBeams }, () => createBeam(w, h));
+        beamsRef.current = Array.from({ length: totalBeams }, () => createBeam(w, h, mobileBoost));
       });
     };
 
     updateCanvasSize();
     window.addEventListener("resize", updateCanvasSize);
     window.addEventListener("mousemove", handleMouseMove);
+
+    // Apply mobile blur to canvas
+    canvas.style.filter = mobileBlur;
 
     const MOUSE_RADIUS = 250;
     const MOUSE_INFLUENCE = 10;
@@ -164,7 +172,6 @@ export default function LightBeams() {
     };
   }, []);
 
-  // Fixed position covers the entire content-beams area
   return (
     <div
       ref={containerRef}
