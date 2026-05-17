@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LightBeams from "@/components/LightBeams";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -262,6 +263,7 @@ export function Portfolio() {
       className="relative bg-black px-6 md:px-16 py-24 md:py-32 overflow-hidden"
     >
       {/* Subtle glow behind preview area — gives depth on mobile without clutter */}
+      <LightBeams />
       <div
         className="absolute pointer-events-none select-none md:right-0 md:top-0 md:w-1/2 md:h-full w-full h-full"
         aria-hidden

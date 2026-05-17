@@ -26,9 +26,9 @@ function createBeam(w: number, h: number, mobileBoost: number): Beam {
     length: h * 2.5,
     angle,
     baseAngle: angle,
-    speed: 0.3 + Math.random() * 0.5,
-    baseSpeed: 0.3 + Math.random() * 0.5,
-    opacity: (0.05 + Math.random() * 0.07) * mobileBoost,
+    speed: 0.6 + Math.random() * 0.8,
+    baseSpeed: 0.6 + Math.random() * 0.8,
+    opacity: (0.08 + Math.random() * 0.1) * mobileBoost,
     hue: 30 + Math.random() * 20,
     pulse: Math.random() * Math.PI * 2,
     pulseSpeed: 0.012 + Math.random() * 0.018,
@@ -43,10 +43,10 @@ function resetBeam(beam: Beam, index: number, total: number, w: number, h: numbe
   beam.width = 40 + Math.random() * 80;
   beam.baseAngle = -35 + Math.random() * 10;
   beam.angle = beam.baseAngle;
-  beam.baseSpeed = 0.3 + Math.random() * 0.5;
+  beam.baseSpeed = 0.6 + Math.random() * 0.8;
   beam.speed = beam.baseSpeed;
   beam.hue = 30 + (index * 20) / total;
-  beam.opacity = 0.05 + Math.random() * 0.07;
+  beam.opacity = (0.08 + Math.random() * 0.1);
   return beam;
 }
 
