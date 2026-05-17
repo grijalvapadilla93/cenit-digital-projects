@@ -153,22 +153,6 @@ function BrowserFrame({ url }: { url: string }) {
 }
 
 function ProjectInfo({ project }: { project: typeof projects[number] }) {
-  // Derive structured data from the who paragraph
-  const yearsMatch = project.who.match(/(\d+)\s*years/);
-  const locationMatch = project.who.match(/in\s+([^.]+?)(?:\.|,)/);
-  const industryMap: Record<string, string> = {
-    "general contractor": "General Contracting",
-    "consulting": "Financial Consulting",
-    "cleaning service": "Home Maintenance",
-    "restaurant": "Restaurant / Hospitality",
-    "parrilla": "Restaurant / Hospitality",
-    "mediterranean": "Restaurant / Hospitality",
-  };
-  let industry = "Professional Services";
-  for (const [key, val] of Object.entries(industryMap)) {
-    if (project.who.toLowerCase().includes(key)) { industry = val; break; }
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -177,7 +161,17 @@ function ProjectInfo({ project }: { project: typeof projects[number] }) {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="mt-10 md:mt-14 max-w-2xl">
-        {/* METRICS — big numbers first, like a dashboard */}
+        {/* PROFILE — keep the human story */}
+        <div className="mb-10">
+          <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-4" style={{ fontSize: 11 }}>
+            Who They Are
+          </p>
+          <p className="font-light text-white/80 leading-relaxed" style={{ fontSize: 15, lineHeight: 1.75 }}>
+            {project.who}
+          </p>
+        </div>
+
+        {/* METRICS — dashboard cards right below the story */}
         <div className="mb-10">
           <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-4" style={{ fontSize: 11 }}>
             Key Metrics
@@ -197,32 +191,7 @@ function ProjectInfo({ project }: { project: typeof projects[number] }) {
           </div>
         </div>
 
-        {/* PROFILE — structured table, no long paragraph */}
-        <div className="mb-10">
-          <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-4" style={{ fontSize: 11 }}>
-            Profile
-          </p>
-          <div className="border border-white/[0.06] divide-y divide-white/[0.04]">
-            <div className="flex px-4 py-2.5">
-              <span className="w-24 flex-shrink-0 font-light text-white/40 tracking-[0.05em]" style={{ fontSize: 12 }}>Industry</span>
-              <span className="font-light text-white/80" style={{ fontSize: 13 }}>{industry}</span>
-            </div>
-            {locationMatch && (
-              <div className="flex px-4 py-2.5">
-                <span className="w-24 flex-shrink-0 font-light text-white/40 tracking-[0.05em]" style={{ fontSize: 12 }}>Location</span>
-                <span className="font-light text-white/80" style={{ fontSize: 13 }}>{locationMatch[1].trim()}</span>
-              </div>
-            )}
-            {yearsMatch && (
-              <div className="flex px-4 py-2.5">
-                <span className="w-24 flex-shrink-0 font-light text-white/40 tracking-[0.05em]" style={{ fontSize: 12 }}>Experience</span>
-                <span className="font-light text-white/80" style={{ fontSize: 13 }}>{yearsMatch[0]}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* SERVICES — compact chip grid */}
+        {/* SERVICES — compact chips */}
         <div className="mb-10">
           <p className="font-light uppercase tracking-[0.1em] text-white/50 mb-4" style={{ fontSize: 11 }}>
             Services
