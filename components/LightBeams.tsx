@@ -84,7 +84,6 @@ export default function LightBeams() {
     if (!ctx) return;
 
     const isMobile = window.innerWidth < 768;
-    let isVisible = true;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -118,24 +117,11 @@ export default function LightBeams() {
     window.addEventListener("resize", updateCanvasSize);
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Pause/resume when section scrolls out of view (saves battery on mobile)
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-      },
-      { threshold: 0 }
-    );
-    observer.observe(container);
-
     const MOUSE_RADIUS = 250;
     const MOUSE_INFLUENCE = 10;
 
     function animate() {
       if (!canvas || !ctx || !container) return;
-      if (!isVisible) {
-        animRef.current = requestAnimationFrame(animate);
-        return;
-      }
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = canvas.width / dpr;
       const h = canvas.height / dpr;
@@ -176,7 +162,6 @@ export default function LightBeams() {
     return () => {
       window.removeEventListener("resize", updateCanvasSize);
       window.removeEventListener("mousemove", handleMouseMove);
-      observer.disconnect();
       cancelAnimationFrame(resizeRAF);
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
