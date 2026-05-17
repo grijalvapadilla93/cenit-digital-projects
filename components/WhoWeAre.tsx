@@ -123,7 +123,7 @@ export function WhoWeAre() {
           ref={headlineRef}
           className="font-light text-white tracking-[0.01em] who-we-are-headline"
           style={{
-            fontSize: "clamp(36px, 5vw, 80px)",
+            fontSize: "clamp(48px, 5vw, 80px)",
             lineHeight: 1.15,
             perspective: 800,
           }}
