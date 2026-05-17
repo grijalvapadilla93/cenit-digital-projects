@@ -74,6 +74,7 @@ export default function LightBeams() {
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const containerRef = useRef<HTMLDivElement>(null);
   const MINIMUM_BEAMS = 18;
+  const IS_MOBILE = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -81,6 +82,9 @@ export default function LightBeams() {
     if (!canvas || !container) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    const isMobile = window.innerWidth < 768;
+    let isVisible = true;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -105,7 +109,7 @@ export default function LightBeams() {
         canvas.style.height = `${h}px`;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        const totalBeams = MINIMUM_BEAMS * 1.5;
+        const totalBeams = isMobile ? Math.round(MINIMUM_BEAMS * 0.8) : Math.round(MINIMUM_BEAMS * 1.5);
         beamsRef.current = Array.from({ length: totalBeams }, () => createBeam(w, h));
       });
     };
@@ -114,11 +118,24 @@ export default function LightBeams() {
     window.addEventListener("resize", updateCanvasSize);
     window.addEventListener("mousemove", handleMouseMove);
 
+    // Pause/resume when section scrolls out of view (saves battery on mobile)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(container);
+
     const MOUSE_RADIUS = 250;
     const MOUSE_INFLUENCE = 10;
 
     function animate() {
       if (!canvas || !ctx || !container) return;
+      if (!isVisible) {
+        animRef.current = requestAnimationFrame(animate);
+        return;
+      }
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = canvas.width / dpr;
       const h = canvas.height / dpr;
@@ -159,6 +176,7 @@ export default function LightBeams() {
     return () => {
       window.removeEventListener("resize", updateCanvasSize);
       window.removeEventListener("mousemove", handleMouseMove);
+      observer.disconnect();
       cancelAnimationFrame(resizeRAF);
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
@@ -185,7 +203,7 @@ export default function LightBeams() {
           position: "absolute",
           top: 0,
           left: 0,
-          filter: "blur(25px)",
+          filter: IS_MOBILE ? "blur(12px)" : "blur(25px)",
           willChange: "transform",
         }}
       />

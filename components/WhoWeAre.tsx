@@ -32,10 +32,12 @@ export function WhoWeAre() {
 
         if (!elements || elements.length === 0) return;
 
-        // Set initial state
+        // Set initial state — everything starts hidden on desktop
         gsap.set(elements, { opacity: 0, y: 40, rotateX: -40 });
+        gsap.set(body, { opacity: 0, y: 20 });
+        gsap.set(".wwa-divider", { width: 0, opacity: 0 });
 
-        // Animate — cinematic, slow, one by one
+        // Animate headline — cinematic, slow, one by one
         gsap.to(elements, {
           opacity: 1,
           y: 0,
@@ -53,43 +55,41 @@ export function WhoWeAre() {
         });
 
         // Body text fades in after
-        gsap.fromTo(
-          body,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out",
-            delay: 1,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 60%",
-              scrub: false,
-              toggleActions: "play none none none",
-            },
-          }
-        );
+        gsap.to(body, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            scrub: false,
+            toggleActions: "play none none none",
+          },
+        });
 
         // Thin animated line divider
-        gsap.fromTo(
-          ".wwa-divider",
-          { width: 0, opacity: 0 },
-          {
-            width: 60,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.inOut",
-            delay: 0.8,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 60%",
-              scrub: false,
-              toggleActions: "play none none none",
-            },
-          }
-        );
+        gsap.to(".wwa-divider", {
+          width: 60,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.inOut",
+          delay: 0.8,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            scrub: false,
+            toggleActions: "play none none none",
+          },
+        });
       }); // end desktop matchMedia
+
+      // Mobile: no GSAP at all — everything visible via CSS
+      mm.add("(max-width: 767px)", () => {
+        // Just clear any GSAP inline styles so CSS !important takes over
+        gsap.set([headline, body, ".wwa-divider"], { clearProps: "all" });
+      }); // end mobile matchMedia
     }, section);
 
     return () => {
@@ -121,7 +121,7 @@ export function WhoWeAre() {
         {/* Poster headline — SplitType target */}
         <h2
           ref={headlineRef}
-          className="font-light text-white tracking-[0.01em]"
+          className="font-light text-white tracking-[0.01em] who-we-are-headline"
           style={{
             fontSize: "clamp(36px, 5vw, 80px)",
             lineHeight: 1.15,
@@ -135,22 +135,19 @@ export function WhoWeAre() {
         <div
           className="wwa-divider"
           style={{
-            width: 0,
             height: 1,
             background: "rgba(255,255,255,0.3)",
             margin: "40px 0",
-            opacity: 0,
           }}
         />
 
         {/* Body — fades in after */}
         <p
           ref={bodyRef}
-          className="font-light text-white/60 leading-relaxed max-w-2xl"
+          className="font-light text-white/60 leading-relaxed max-w-2xl who-we-are-body"
           style={{
             fontSize: "clamp(16px, 1.8vw, 22px)",
             lineHeight: 1.7,
-            opacity: 0,
           }}
         >
           From a website that converts to the systems that keep you visible — SEO, ads,

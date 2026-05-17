@@ -137,8 +137,11 @@ export function Hero() {
         <video
           ref={videoRef}
           src="/hero-video-pingpong.mp4"
-          autoPlay muted loop playsInline preload="metadata" poster="/hero-fallback.jpeg"
+          autoPlay muted loop playsInline preload="auto" poster="/hero-fallback.jpeg"
           className="w-full h-full object-cover pointer-events-none select-none"
+          onCanPlay={(e) => {
+            (e.target as HTMLVideoElement).play().catch(() => {});
+          }}
         />
       </div>
 

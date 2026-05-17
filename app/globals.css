@@ -120,6 +120,12 @@ body::before {
     opacity: 1 !important;
     width: 60px !important;
   }
+  .who-we-are-body {
+    opacity: 1 !important;
+  }
+  .who-we-are-headline {
+    opacity: 1 !important;
+  }
 }
 
 /* Line divider */
