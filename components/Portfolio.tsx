@@ -275,17 +275,17 @@ export function Portfolio() {
                   <button
                     key={project.slug}
                     onClick={() => handleSelect(i)}
-                    className={`sidebar-item flex-shrink-0 text-left w-[260px] md:w-full py-6 md:py-8 border-b border-white/[0.06] transition-all duration-500 group snap-start ${
+                    className={`sidebar-item flex-shrink-0 text-left w-[200px] md:w-full py-3 md:py-8 transition-all duration-500 group snap-start ${
                       isActive
-                        ? "md:border-l md:border-l-white/20 md:pl-6"
-                        : "md:opacity-20 md:hover:opacity-40 md:pl-8"
+                        ? "md:border-l md:border-l-white/20 md:pl-6 border-b-2 border-white/20 md:border-b-0"
+                        : "md:opacity-20 md:hover:opacity-40 md:pl-8 border-b border-white/[0.04] md:border-b-white/[0.06]"
                     }`}
                   >
-                    <div className="flex items-start gap-5 md:gap-6">
+                    <div className="flex items-start gap-3 md:gap-6">
                       <span
                         className="font-light select-none flex-shrink-0"
                         style={{
-                          fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 0.85,
+                          fontSize: "clamp(24px, 4vw, 56px)", lineHeight: 0.9,
                           color: isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.08)",
                           transition: "color 0.5s ease",
                         }}
