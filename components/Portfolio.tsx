@@ -12,7 +12,7 @@ const projects = [
     slug: "meridian-construction",
     name: "Meridian Construction Group",
     tag: "High-end residential & commercial",
-    previewUrl: "https://al-carbon.vercel.app/",
+    previewUrl: "https://meridianmiamiconstruction.com",
     who: "Midtown Miami general contractor with 15 years in the market. They do high-end remodels, commercial buildouts, and luxury condo renovations in Brickell and South Beach.",
     what: [
       "Website full redesign & launch",
