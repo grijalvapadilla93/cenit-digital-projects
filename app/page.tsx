@@ -53,19 +53,30 @@ export default function Home() {
         <Transition />
       </section>
 
-      {/* Decorative divider */}
-      <div className="section-divider">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,40 Q360,0 720,40 Q1080,80 1440,40"
-            fill="none"
-            stroke="rgba(198,167,106,0.08)"
-            strokeWidth="0.5"
+      {/* Portfolio — showcase bg covering divider + content */}
+      <div className="relative bg-black overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden opacity-[0.25] md:opacity-[0.18]">
+          <img
+            src="/Showcase-image.png"
+            alt=""
+            className="w-full h-full object-cover"
           />
-        </svg>
-      </div>
+        </div>
 
-      <Portfolio />
+        {/* Decorative divider */}
+        <div className="section-divider">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+            <path
+              d="M0,40 Q360,0 720,40 Q1080,80 1440,40"
+              fill="none"
+              stroke="rgba(198,167,106,0.08)"
+              strokeWidth="0.5"
+            />
+          </svg>
+        </div>
+
+        <Portfolio />
+      </div>
       <div id="content-beams" className="relative bg-black">
         <LightBeams />
         <div className="relative z-[1]">
