@@ -261,13 +261,12 @@ export function Portfolio() {
       ref={sectionRef}
       className="relative bg-black px-6 md:px-16 py-24 md:py-32 overflow-hidden"
     >
-      {/* Background showcase image — subtle, gives depth */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden opacity-[0.07] md:opacity-[0.10]">
+      {/* Background showcase image — subtle texture depth */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden opacity-[0.15] md:opacity-[0.12]">
         <img
           src="/Showcase-image.png"
           alt=""
           className="w-full h-full object-cover"
-          style={{ filter: "blur(4px)" }}
         />
       </div>
       <div className="mx-auto relative z-[1]" style={{ maxWidth: 1400 }}>
