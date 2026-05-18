@@ -259,7 +259,7 @@ export function Portfolio() {
     <section
       id="work"
       ref={sectionRef}
-      className="relative bg-black px-6 md:px-16 py-24 md:py-32 overflow-hidden"
+      className="relative px-6 md:px-16 py-24 md:py-32 overflow-hidden"
     >
       <div className="mx-auto relative z-[1]" style={{ maxWidth: 1400 }}>
         <div className="flex flex-col md:flex-row md:gap-16 lg:gap-20">
