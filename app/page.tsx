@@ -55,11 +55,12 @@ export default function Home() {
 
       {/* Portfolio — showcase bg covering divider + content */}
       <div className="relative bg-black overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden opacity-[0.25] md:opacity-[0.18]">
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden opacity-[0.5] md:opacity-[0.35]">
           <img
             src="/Showcase-image.png"
             alt=""
             className="w-full h-full object-cover"
+            style={{ mixBlendMode: "screen" }}
           />
         </div>
 
