@@ -4,7 +4,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LightBeams from "@/components/LightBeams";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -262,24 +261,15 @@ export function Portfolio() {
       ref={sectionRef}
       className="relative bg-black px-6 md:px-16 py-24 md:py-32 overflow-hidden"
     >
-      {/* Subtle glow behind preview area — gives depth on mobile without clutter */}
-      <LightBeams />
-      <div
-        className="absolute pointer-events-none select-none md:right-0 md:top-0 md:w-1/2 md:h-full w-full h-full"
-        aria-hidden
-      >
-        <div
-          className="absolute"
-          style={{
-            width: "70vw", height: "70vw", maxWidth: 600, maxHeight: 600,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)",
-            filter: "blur(80px)",
-            top: "10%", right: "-10%",
-          }}
+      {/* Background showcase image — subtle, gives depth */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden opacity-[0.04] md:opacity-[0.06]">
+        <img
+          src="/Showcase-image.png"
+          alt=""
+          className="w-full h-full object-cover"
+          style={{ filter: "blur(4px)" }}
         />
       </div>
-
       <div className="mx-auto relative z-[1]" style={{ maxWidth: 1400 }}>
         <div className="flex flex-col md:flex-row md:gap-16 lg:gap-20">
           {/* ─── Right (desktop) / Top (mobile): project list ─── */}
